@@ -6,9 +6,7 @@
 
 ---------------------------------------------------------------------
 
-
-
-
+The main purpose of this project is to work as a clock in/out an application where the "Employee" can create an "Account". This is then approved by the Admin. The employee is able to access the application after being confirmed. And can clock in and out of their application. Hours are calculated and is then displayed for them to view. Employee details are visible to both Admin and Employee.
 
 
 
@@ -30,11 +28,11 @@
 
 ***Start of the day***
 
-![initail_11_05_2021_first](C:\Users\Mrhos\Desktop\Sparta_Global\Projects\wpf-ef_Project\WPF-EF_Project\Images\Kanban\initail_11_05_2021_first.PNG)
+![initail_11_05_2021_first](\Images\Kanban\initail_11_05_2021_first.PNG)
 
 ***End of the day***
 
-![11_05_2021_Second.](C:\Users\Mrhos\Desktop\Sparta_Global\Projects\wpf-ef_Project\WPF-EF_Project\Images\Kanban\11_05_2021_Second..PNG)
+![11_05_2021_Second.](\Images\Kanban\11_05_2021_Second..PNG)
 
 
 
@@ -46,7 +44,7 @@
 
 ***ERD - Database***
 
-![MidCourse_Project](C:\Users\Mrhos\Desktop\Sparta_Global\Projects\wpf-ef_Project\WPF-EF_Project\Images\Database\MidCourse_Project.png)
+![MidCourse_Project](\Images\Database\MidCourse_Project.png)
 
 
 
