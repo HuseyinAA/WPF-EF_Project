@@ -1,4 +1,35 @@
 # WPF-EF_Project
-WPF-EF_Project is the mid course Sparata Global project.
+### Project Description
+
+---------------------------------------------------------------------
+
+
+
+
+
+
+
+#### Project Goals
+
+---------------------------------------------------
+
+
+
+
+
+
+
+
+
+#### Sprint 1:
+
+--------------------------------------------------
+
+**Sprint Goals**
+
+- [ ] 1.1
+- [ ] 1.2
+
+
 
 -[ ] for commit
