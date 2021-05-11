@@ -10,25 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MidCourseProjectWPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for RegisterWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RegisterWindow : Window
     {
-        RegisterWindow regWin = new RegisterWindow();
-        public MainWindow()
+        public static MainWindow mainWin = new MainWindow();
+        public RegisterWindow()
         {
             InitializeComponent();
         }
 
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        private void BackToHomePageButton_Click(object sender, RoutedEventArgs e)
         {
-            regWin.Show();
+            mainWin.Show();
             Hide();
         }
     }
