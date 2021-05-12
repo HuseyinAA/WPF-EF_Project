@@ -14,11 +14,21 @@ The main purpose of this project is to work as a clock in/out an application whe
 
 ---------------------------------------------------
 
+The project will be a 3 tier application consisting of:
+
+* Model(Database)
+* Business Logic(Code that interacts with your database and GUI)
+* GUI(Graphical User Interface)
+
+The MVP goals of the project are to successfully show both employer and employees their correct data. For example, if an employer wants to see how many hours an employee has done they can do so along with their pay. And the same goes for the employee which can also view their hours, pay and personal information.
 
 
 
+Goals for expansion of some features are such:
 
-
+* Requesting holidays
+* Employer able to modify or remove an employee
+* Employer able to request for shifts.
 
 
 
@@ -26,23 +36,27 @@ The main purpose of this project is to work as a clock in/out an application whe
 
 --------------------------------------------------
 
-***Start of the day***
+***Start of the day Kanban Board***
 
 ![initail_11_05_2021_first](\Images\Kanban\initail_11_05_2021_first.PNG)
 
-***End of the day***
+***End of the day Kanban Board***
 
 ![11_05_2021_Second.](\Images\Kanban\11_05_2021_Second..PNG)
 
 
 
-**Sprint Goals**
+**Sprint 2 Goals**
 
-- [ ] 1.1
-- [ ] 1.2
+- [x] 1.1
+- [x] 1.2
 - [x] 1.3
+- [x] 1.4
+- [x] 1.5
 
 ***ERD - Database***
+
+Here is a Entity relationship diagram of my database.
 
 ![MidCourse_Project](\Images\Database\MidCourse_Project.png)
 
@@ -50,8 +64,89 @@ The main purpose of this project is to work as a clock in/out an application whe
 
 
 
+#### Sprint 2:
+
+---------------------------------------
+
+***Start of the day Kanban Board***
+
+![11_05_2021_Second.](\Images\Kanban\11_05_2021_Second..PNG)
+
+***End of the day Kanban Board*** 
+
+![12_05_2021_second](\Images\Kanban\12_05_2021_second.PNG)
+
+**Sprint 2 Goals**
+
+- [x] 1.1
+- [x] 1.2
+- [x] 1.3
+- [x] 1.4
+- [x] 1.5
+
+
+
+#### Sprint Review
+
+In this second sprint I was able to finish all the tasks set out for the development of the Login window mainly the GUI and the business logic code which allows the employee to access the dashboard.  So now the employee can access the dashboard by either creating an account or login in directly if they already have an account. Once completed the sprint for today I focused on getting the readme document up to date and working on designs for the next sprint which is going to require more time do develop. 
+
+##### Project Retrospective
+
+I managed to work quickly on this sprint but I did run into a few issues that could have been avoided I had taken a bit more time to think about the possible use case of certain database fields. As a result I had to drop my tables as I noticed that by making my database primary keys auto increment I am unable to set them manually.  
+
+
+
+#### Sprint 3:
+
+---------------------------------------
+
+***Start of the day Kanban Board***
+
+
+
+***End of the day Kanban Board*** 
+
+
+
+**Sprint 2 Goals**
+
+- [ ] 1.1
+- [ ] 1.2
+- [ ] 1.3
+- [ ] 1.4
+- [ ] 1.5
+
+
+
+#### Sprint Review
+
+
+
+#### Sprint 4:
+
+---------------------------------------
+
+***Start of the day Kanban Board***
+
+
+
+***End of the day Kanban Board*** 
+
+
+
+**Sprint 2 Goals**
+
+- [x] 1.1
+- [x] 1.2
+- [x] 1.3
+- [x] 1.4
+- [x] 1.5
+
+
+
+#### Sprint Review
 
 
 
 
--[ ] for commit
+

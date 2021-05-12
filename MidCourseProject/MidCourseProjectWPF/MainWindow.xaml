@@ -18,22 +18,22 @@
         <materialDesign:Card Padding="32,32,32,32" Width="506" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,124,0,0" Height="300">
             <Grid Margin="0,0,0,-17">
                 <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" Margin="0,-9,0,196" FontWeight="Heavy"><Run Text="LOGIN" FontWeight="Bold" FontFamily="Adobe Gothic Std B" FontSize="22"/></TextBlock>
-                <TextBox
+                <TextBox x:Name="usernameLoginTxt"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                     VerticalAlignment="Top"
                     Height="48"
                     AcceptsReturn="True"
                     TextWrapping="Wrap"
                     VerticalScrollBarVisibility="Disabled"
-                    materialDesign:HintAssist.Hint="Username" Margin="21,47,21,0" CaretBrush="#FF464646" Width="400" BorderBrush="#7F000000" />
-                <PasswordBox x:Name="Password"
+                    materialDesign:HintAssist.Hint="Username" Margin="21,47,21,0" CaretBrush="#FF464646" Width="400" BorderBrush="#7F000000" TextChanged="TextBox_TextChanged" Padding="16,12,12,16" />
+                <PasswordBox x:Name="passwordLoginTxt"
                     Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                     VerticalAlignment="Top"
-                    materialDesign:HintAssist.Hint="Password" Margin="21,105,21,0" SelectionBrush="#FF6A6A6A" CaretBrush="#FF464646" Width="400" Height="48" BorderBrush="#7F000000" />
+                    materialDesign:HintAssist.Hint="Password" Margin="21,105,21,0" SelectionBrush="#FF6A6A6A" CaretBrush="#FF464646" Width="400" Height="48" BorderBrush="#7F000000" TextInput="passwordLoginTxt_TextInput" Padding="16,12,16,16" />
                 <Button
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     materialDesign:ButtonAssist.CornerRadius="10"
-                    ToolTip="Login to access your Dashboard" Margin="21,169,21,42" BorderBrush="{x:Null}" Background="#FFD23459" Width="400" Height="42">
+                    ToolTip="Login to access your Dashboard" Margin="21,169,21,42" BorderBrush="{x:Null}" Background="#FFD23459" Width="400" Height="42" Click="Button_Click">
                     <TextBlock
                         Text="LOGIN" FontWeight="Bold" FontSize="16" />
                 </Button>

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace MidCourseProject
+namespace MidCourseProjectModel
 {
     public partial class HrDBContext : DbContext
     {
@@ -38,7 +38,10 @@ namespace MidCourseProject
             {
                 entity.ToTable("Employee");
 
-                entity.Property(e => e.EmployeeId).HasColumnName("employeeID");
+                entity.Property(e => e.EmployeeId)
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .HasColumnName("employeeID");
 
                 entity.Property(e => e.Address)
                     .IsRequired()
@@ -59,10 +62,7 @@ namespace MidCourseProject
                     .HasColumnType("decimal(10, 5)")
                     .HasColumnName("hrRate");
 
-                entity.Property(e => e.IsWorking)
-                    .IsRequired()
-                    .IsUnicode(false)
-                    .HasColumnName("isWorking");
+                entity.Property(e => e.IsWorking).HasColumnName("isWorking");
 
                 entity.Property(e => e.LastName)
                     .IsRequired()
@@ -107,7 +107,10 @@ namespace MidCourseProject
                     .HasColumnType("datetime")
                     .HasColumnName("clockOut");
 
-                entity.Property(e => e.EmployeeId).HasColumnName("employeeID");
+                entity.Property(e => e.EmployeeId)
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .HasColumnName("employeeID");
 
                 entity.Property(e => e.TotalPay)
                     .HasColumnType("decimal(10, 5)")
@@ -116,7 +119,7 @@ namespace MidCourseProject
                 entity.HasOne(d => d.Employee)
                     .WithMany(p => p.EmployeeClocks)
                     .HasForeignKey(d => d.EmployeeId)
-                    .HasConstraintName("FK__EmployeeC__emplo__300424B4");
+                    .HasConstraintName("FK__EmployeeC__emplo__440B1D61");
             });
 
             modelBuilder.Entity<Employer>(entity =>
@@ -125,7 +128,10 @@ namespace MidCourseProject
 
                 entity.Property(e => e.EmployerId).HasColumnName("employerID");
 
-                entity.Property(e => e.EmployeeId).HasColumnName("employeeID");
+                entity.Property(e => e.EmployeeId)
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .HasColumnName("employeeID");
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
@@ -145,7 +151,7 @@ namespace MidCourseProject
                 entity.HasOne(d => d.Employee)
                     .WithMany(p => p.Employers)
                     .HasForeignKey(d => d.EmployeeId)
-                    .HasConstraintName("FK__Employer__employ__32E0915F");
+                    .HasConstraintName("FK__Employer__employ__46E78A0C");
             });
 
             OnModelCreatingPartial(modelBuilder);

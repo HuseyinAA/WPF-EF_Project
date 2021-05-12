@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace MidCourseProject
+namespace MidCourseProjectModel
 {
     public partial class EmployeeClock
     {
@@ -12,7 +12,7 @@ namespace MidCourseProject
         public DateTime? ClockIn { get; set; }
         public DateTime? ClockOut { get; set; }
         public decimal? TotalPay { get; set; }
-        public int? EmployeeId { get; set; }
+        public string EmployeeId { get; set; }
 
         public virtual Employee Employee { get; set; }
     }

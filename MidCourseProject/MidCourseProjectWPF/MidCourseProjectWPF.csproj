@@ -11,6 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MidCourseProjectBusiness\MidCourseProjectBusiness.csproj" />
+    <ProjectReference Include="..\MidCourseProject\MidCourseProjectModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="sparta-logo-4020.png" />
   </ItemGroup>
 

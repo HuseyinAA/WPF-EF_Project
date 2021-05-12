@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace MidCourseProject
+namespace MidCourseProjectModel
 {
     public partial class Employee
     {
@@ -13,7 +13,7 @@ namespace MidCourseProject
             Employers = new HashSet<Employer>();
         }
 
-        public int EmployeeId { get; set; }
+        public string EmployeeId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
@@ -21,7 +21,7 @@ namespace MidCourseProject
         public string PostCode { get; set; }
         public string PhoneNumber { get; set; }
         public string Position { get; set; }
-        public string IsWorking { get; set; }
+        public int IsWorking { get; set; }
         public decimal HrRate { get; set; }
         public string Password { get; set; }
 

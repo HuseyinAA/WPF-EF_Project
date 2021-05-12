@@ -1,0 +1,17 @@
+﻿<Window x:Class="MidCourseProjectWPF.EmployeeDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MidCourseProjectWPF"
+        mc:Ignorable="d"
+        Title="Sparta Hub - Dashboard" Height="540" Width="992" MinWidth="992" MaxWidth="992" MinHeight="540" MaxHeight="540">
+    <Grid>
+        <Image HorizontalAlignment="Center" Height="100" Margin="0,10,0,0" VerticalAlignment="Top" Width="162" Source="/sparta-logo-4020.png"/>
+        <Button
+            Style="{StaticResource MaterialDesignOutlinedButton}"
+            ToolTip="MaterialDesignOutlinedButton"
+            Content="SIGN OUT" Margin="825,29,55,463" BorderBrush="#FFD23459" Foreground="#FFD23459" FontWeight="Bold" Click="Button_Click" />
+        <Label x:Name="greetingLbl" Content="Label" HorizontalAlignment="Left" Margin="433,168,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+    </Grid>
+</Window>

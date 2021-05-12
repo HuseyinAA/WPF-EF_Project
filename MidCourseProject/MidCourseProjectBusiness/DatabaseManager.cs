@@ -3,20 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MidCourseProject;
+using MidCourseProjectModel;
 
 namespace MidCourseProjectBusiness
 {
-    class DatabaseManager
+    public class DatabaseManager
     {
         ///CRUD FUNCTIONALITIES HERE!
         
-        public bool CreateCustomer(Employee emp)
+        public bool CreateCustomer(Employee emp, out string message)
         {
             // takes in emp and validates
             // checks and stores data into HrDBContext() through the db using keyword
             // returns true which passes the appliction to the next page
-            return false;
+            bool re = false;
+            using (var db = new HrDBContext())
+            { 
+                try
+                {
+                    db.Add(emp);
+                    db.SaveChanges();
+                    re = true;
+                    message = "Save Successful";
+                }
+                catch (Exception error)
+                {
+                    message = error.Message;
+                    re = false;
+                }
+            }
+            //db.Customers.Add(newCustomer);
+            //db.SaveChanges();
+
+            return re;
         }
 
         public void ChangePassword() // MIGHT NOT BET NEEDED
@@ -27,6 +46,12 @@ namespace MidCourseProjectBusiness
         public void UpdateCustomer(Employee emp) //Only password or 
         {
             // Passing an emp to the HrDBContext
+        }
+
+        public void AdminUpdatingCustomer(Employee emp) //Only password or 
+        {
+            // Passing an emp to the HrDBContext
+            // Admin updates customer poisition, IsWorking and Pay;
         }
 
         public void DeleteCustomer() //Remove customer - only Admin available
@@ -55,10 +80,30 @@ namespace MidCourseProjectBusiness
             // 
         }
 
-        public bool CheckLoginStatus(string employeeID, string password)
+        public bool CheckLoginStatus(string employeeID, string password, out string message, out Employee emp)
         {
             //Check to see if this.employeeID == employeeID && this.password == password
-            return false;
+            bool logedin = false;
+            using (var db = new HrDBContext())
+            {
+                var selectedEmployee = db.Employees.Where(e => e.EmployeeId == $"{employeeID}").FirstOrDefault();
+                //Change selected customers city
+                if (selectedEmployee.Password == password)
+                {
+                    message = "Login Successful";
+                    logedin = true;
+                    emp = selectedEmployee;//db.Employees.Find(employeeID);
+                    return logedin;
+                }
+                else
+                {
+                    message = "Please Check your username and password";
+                    logedin = false;
+                    emp = null;
+                    return logedin;
+                }
+                
+            }
         }
     }
 }
