@@ -34,7 +34,7 @@ CREATE TABLE Employer
 	employeeID varchar(5) FOREIGN KEY REFERENCES Employee(employeeID)
 )
 
-SELECT * FROM Employer
+SELECT * FROM Employee
 
 --DROP TABLE Employer;
 

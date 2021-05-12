@@ -92,7 +92,9 @@ In this second sprint I was able to finish all the tasks set out for the develop
 
 ##### Project Retrospective
 
-I managed to work quickly on this sprint but I did run into a few issues that could have been avoided I had taken a bit more time to think about the possible use case of certain database fields. As a result I had to drop my tables as I noticed that by making my database primary keys auto increment I am unable to set them manually.  
+I managed to work quickly on this sprint but I did run into a few issues that could have been avoided I had taken a bit more time to think about the possible use case of certain database fields. As a result I had to drop my tables as I noticed that by making my database primary keys auto increment I am unable to set them manually.  After that I was able recreate the tables and scaffold the database. 
+
+I noticed that I had underestimated this sprint as I managed to finish it ahead of our evening reviews. I need to take into consideration on how long a feature may take and plan properly. Based on todays situation I can predict that I will be doing more than today in tomorrows sprint. 
 
 
 

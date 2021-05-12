@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MidCourseProjectWPF"
         mc:Ignorable="d"
-        Title="Sparta Hub - Dashboard" Height="540" Width="992" MinWidth="992" MaxWidth="992" MinHeight="540" MaxHeight="540">
+        Title="Sparta Hub - Dashboard" Height="540" Width="992" MinWidth="992" MaxWidth="992" MinHeight="540" MaxHeight="540" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Image HorizontalAlignment="Center" Height="100" Margin="0,10,0,0" VerticalAlignment="Top" Width="162" Source="/sparta-logo-4020.png"/>
         <Button
