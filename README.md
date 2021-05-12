@@ -38,11 +38,11 @@ Goals for expansion of some features are such:
 
 ***Start of the day Kanban Board***
 
-![initail_11_05_2021_first](\Images\Kanban\initail_11_05_2021_first.PNG)
+![initail_11_05_2021_first](/Images/Kanban/initail_11_05_2021_first.PNG)
 
 ***End of the day Kanban Board***
 
-![11_05_2021_Second.](\Images\Kanban\11_05_2021_Second..PNG)
+![11_05_2021_Second.](/Images/Kanban/11_05_2021_Second..PNG)
 
 
 
@@ -58,7 +58,7 @@ Goals for expansion of some features are such:
 
 Here is a Entity relationship diagram of my database.
 
-![MidCourse_Project](\Images\Database\MidCourse_Project.png)
+![MidCourse_Project](/Images/Database/MidCourse_Project.png)
 
 
 
@@ -70,11 +70,11 @@ Here is a Entity relationship diagram of my database.
 
 ***Start of the day Kanban Board***
 
-![11_05_2021_Second.](\Images\Kanban\11_05_2021_Second..PNG)
+![11_05_2021_Second.](/Images/Kanban/11_05_2021_Second..PNG)
 
 ***End of the day Kanban Board*** 
 
-![12_05_2021_second](\Images\Kanban\12_05_2021_second.PNG)
+![12_05_2021_second](/Images/Kanban/12_05_2021_second.PNG)
 
 **Sprint 2 Goals**
 
@@ -136,11 +136,11 @@ I managed to work quickly on this sprint but I did run into a few issues that co
 
 **Sprint 2 Goals**
 
-- [x] 1.1
-- [x] 1.2
-- [x] 1.3
-- [x] 1.4
-- [x] 1.5
+- [ ] 1.1
+- [ ] 1.2
+- [ ] 1.3
+- [ ] 1.4
+- [ ] 1.5
 
 
 
