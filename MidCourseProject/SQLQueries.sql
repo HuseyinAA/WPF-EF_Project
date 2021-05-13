@@ -34,7 +34,7 @@ CREATE TABLE Employer
 	password varchar(MAX) NOT NULL,
 )
 
-SELECT * FROM Employer
+SELECT * FROM EmployeeClocks
 
 -----ADDING ADMIN
 --INSERT INTO Employer (employerID, firstName, lastName, password)
@@ -45,6 +45,11 @@ SELECT * FROM Employer
 --UPDATE Employee
 --SET position = 'Basic Staff', isWorking = 1
 --WHERE employeeID = 'trkmj';
+
+-----Manual Update employee position and data
+--UPDATE EmployeeClocks
+--SET employeeID = 'trkmj'
+--WHERE employeeClockID = 1;
 
 --DROP TABLE Employer;
 

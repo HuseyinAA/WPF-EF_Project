@@ -53,6 +53,7 @@ Goals for expansion of some features are such:
 - [x] 1.3
 - [x] 1.4
 - [x] 1.5
+- [x] 1.6
 
 ***ERD - Database***
 
@@ -83,6 +84,7 @@ Here is a Entity relationship diagram of my database.
 - [x] 1.3
 - [x] 1.4
 - [x] 1.5
+- [x] 1.6
 
 
 
@@ -112,17 +114,19 @@ I noticed that I had underestimated this sprint as I managed to finish it ahead 
 
 **Sprint 2 Goals**
 
+- [x] Task 3
 - [ ] 1.1
 - [ ] 1.2
-- [ ] 1.3
-- [ ] 1.4
+- [x] 1.3
+- [x] 1.4
 - [ ] 1.5
+- [ ] 1.6
 
 
 
 #### Sprint Review
 
-
+Tasks left to do...
 
 #### Sprint 4:
 

@@ -39,6 +39,33 @@ namespace MidCourseProjectBusiness
             return re;
         }
 
+        public bool CreateCustomerClock(EmployeeClock empClock, out string message)
+        {
+            // takes in emp and validates
+            // checks and stores data into HrDBContext() through the db using keyword
+            // returns true which passes the appliction to the next page
+            bool re = false;
+            using (var db = new HrDBContext())
+            {
+                try
+                {
+                    db.Add(empClock);
+                    db.SaveChanges();
+                    re = true;
+                    message = "Clocking times Added Successfully";
+                }
+                catch (Exception error)
+                {
+                    message = error.Message;
+                    re = false;
+                }
+            }
+            //db.Customers.Add(newCustomer);
+            //db.SaveChanges();
+
+            return re;
+        }
+
         public void ChangePassword() // MIGHT NOT BET NEEDED
         {
             // 
@@ -81,16 +108,15 @@ namespace MidCourseProjectBusiness
             // 
         }
 
-        public List<Employee> JoiningEmployerWithEmployerClockToRetreiveData(string ID)
+        public List<EmployeeClock> EmployerWithEmployerClockToRetreiveData(string ID)
         {
             using (var db  = new HrDBContext())
             {
                 //var selectedEmployeeClocks = db.EmployeeClocks.Where(e => e.EmployeeId == ID).Include(ec => ec.Employee).FirstOrDefault();
-                return db.Employees.Where(e => e.EmployerId == ID).Include(ec => ec.EmployeeClocks).ToList();
+                return db.EmployeeClocks.Where(e => e.EmployeeId == ID).Include(ec => ec.Employee).ToList();
                 //return setEmpclock;
             }
         }
-
 
         /////////////////////////////////////////////
         public List<EmployeeClock> RetrieveAllCustomers(string ID)
@@ -110,6 +136,7 @@ namespace MidCourseProjectBusiness
             }
         }
         /////////////////////////////////////////////
+        
         public bool CheckLoginStatus(string ID, string password, out string message, out Employee employee, out Employer employer)
         {
             //Check to see if this.employeeID == employeeID && this.password == password
