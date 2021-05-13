@@ -13,6 +13,7 @@ CREATE TABLE Employee
 	isWorking integer NOT NULL,
 	hrRate decimal(10,5) NOT NULL,
 	password varchar(MAX) NOT NULL,
+	employerID varchar(7) FOREIGN KEY REFERENCES Employer(employerID)
 )
 
 CREATE TABLE EmployeeClocks
@@ -27,11 +28,10 @@ CREATE TABLE EmployeeClocks
 
 CREATE TABLE Employer
 (
-	employerID int IDENTITY(1,1) PRIMARY KEY,
+	employerID varchar(7) PRIMARY KEY, --Example 7 => Admin01
 	firstName varchar(MAX) NOT NULL,
 	lastName varchar(MAX) NOT NULL,
 	password varchar(MAX) NOT NULL,
-	employeeID varchar(5) FOREIGN KEY REFERENCES Employee(employeeID)
 )
 
 SELECT * FROM Employee

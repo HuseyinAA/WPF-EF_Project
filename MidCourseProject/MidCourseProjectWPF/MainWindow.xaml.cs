@@ -64,7 +64,7 @@ namespace MidCourseProjectWPF
             if(manager.CheckLoginStatus(username, password, out string message, out Employee emp)) 
             {
                 _employee = emp;
-                g.MessageNotify(message, "Login successful");
+                //g.MessageNotify(message, "Login successful");
                 result = true;
             }
             else
@@ -80,9 +80,16 @@ namespace MidCourseProjectWPF
         {
             if (CheckLoginDetails())
             {
-                _EmpDashWin = new EmployeeDashboard(_employee);
-                _EmpDashWin.Show();
-                Hide();
+                if (_employee.IsWorking == 1)
+                {
+                    _EmpDashWin = new EmployeeDashboard(_employee);
+                    _EmpDashWin.Show();
+                    Hide();
+                }
+                else
+                {
+                    g.MessageNotify("Unable to Log in! You will need to wait for your admin to confrim your account", "Awating Admin confirmation");
+                }
             }
             
         }

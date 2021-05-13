@@ -9,16 +9,14 @@ namespace MidCourseProjectModel
     {
         public Employer()
         {
-            //Employees = new hashset of employee type
+            Employees = new HashSet<Employee>();
         }
-        public int EmployerId { get; set; }
+
+        public string EmployerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Password { get; set; }
-        public string EmployeeId { get; set; }
 
-        public virtual Employee Employee { get; set; }
-
-        //Make a list of Employees ICollection
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

@@ -53,6 +53,11 @@ namespace MidCourseProjectModel
                     .IsUnicode(false)
                     .HasColumnName("city");
 
+                entity.Property(e => e.EmployerId)
+                    .HasMaxLength(7)
+                    .IsUnicode(false)
+                    .HasColumnName("employerID");
+
                 entity.Property(e => e.FirstName)
                     .IsRequired()
                     .IsUnicode(false)
@@ -89,6 +94,11 @@ namespace MidCourseProjectModel
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasColumnName("postCode");
+
+                entity.HasOne(d => d.Employer)
+                    .WithMany(p => p.Employees)
+                    .HasForeignKey(d => d.EmployerId)
+                    .HasConstraintName("FK__Employee__employ__4BAC3F29");
             });
 
             modelBuilder.Entity<EmployeeClock>(entity =>
@@ -119,19 +129,17 @@ namespace MidCourseProjectModel
                 entity.HasOne(d => d.Employee)
                     .WithMany(p => p.EmployeeClocks)
                     .HasForeignKey(d => d.EmployeeId)
-                    .HasConstraintName("FK__EmployeeC__emplo__440B1D61");
+                    .HasConstraintName("FK__EmployeeC__emplo__4E88ABD4");
             });
 
             modelBuilder.Entity<Employer>(entity =>
             {
                 entity.ToTable("Employer");
 
-                entity.Property(e => e.EmployerId).HasColumnName("employerID");
-
-                entity.Property(e => e.EmployeeId)
-                    .HasMaxLength(5)
+                entity.Property(e => e.EmployerId)
+                    .HasMaxLength(7)
                     .IsUnicode(false)
-                    .HasColumnName("employeeID");
+                    .HasColumnName("employerID");
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
@@ -147,11 +155,6 @@ namespace MidCourseProjectModel
                     .IsRequired()
                     .IsUnicode(false)
                     .HasColumnName("password");
-
-                entity.HasOne(d => d.Employee)
-                    .WithMany(p => p.Employers)
-                    .HasForeignKey(d => d.EmployeeId)
-                    .HasConstraintName("FK__Employer__employ__46E78A0C");
             });
 
             OnModelCreatingPartial(modelBuilder);

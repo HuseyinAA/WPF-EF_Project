@@ -10,7 +10,6 @@ namespace MidCourseProjectModel
         public Employee()
         {
             EmployeeClocks = new HashSet<EmployeeClock>();
-            Employers = new HashSet<Employer>();
         }
 
         public string EmployeeId { get; set; }
@@ -24,8 +23,9 @@ namespace MidCourseProjectModel
         public int IsWorking { get; set; }
         public decimal HrRate { get; set; }
         public string Password { get; set; }
+        public string EmployerId { get; set; }
 
+        public virtual Employer Employer { get; set; }
         public virtual ICollection<EmployeeClock> EmployeeClocks { get; set; }
-        public virtual ICollection<Employer> Employers { get; set; }
     }
 }
