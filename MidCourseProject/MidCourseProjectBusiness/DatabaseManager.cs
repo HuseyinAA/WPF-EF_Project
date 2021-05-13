@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MidCourseProjectModel;
 
 namespace MidCourseProjectBusiness
@@ -80,29 +81,90 @@ namespace MidCourseProjectBusiness
             // 
         }
 
-        public bool CheckLoginStatus(string employeeID, string password, out string message, out Employee emp)
+        public List<Employee> JoiningEmployerWithEmployerClockToRetreiveData(string ID)
+        {
+            using (var db  = new HrDBContext())
+            {
+                //var selectedEmployeeClocks = db.EmployeeClocks.Where(e => e.EmployeeId == ID).Include(ec => ec.Employee).FirstOrDefault();
+                return db.Employees.Where(e => e.EmployerId == ID).Include(ec => ec.EmployeeClocks).ToList();
+                //return setEmpclock;
+            }
+        }
+
+
+        /////////////////////////////////////////////
+        public List<EmployeeClock> RetrieveAllCustomers(string ID)
+        {
+            List<EmployeeClock> list = new List<EmployeeClock>();
+            using (var db = new HrDBContext())
+            {
+                foreach (var i in db.EmployeeClocks)
+                {
+                    if(i.EmployeeId == ID)
+                    {
+                        list.Add(i);
+                    }
+                    
+                }
+                return list;
+            }
+        }
+        /////////////////////////////////////////////
+        public bool CheckLoginStatus(string ID, string password, out string message, out Employee employee, out Employer employer)
         {
             //Check to see if this.employeeID == employeeID && this.password == password
             bool logedin = false;
             using (var db = new HrDBContext())
             {
-                var selectedEmployee = db.Employees.Where(e => e.EmployeeId == $"{employeeID}").FirstOrDefault();
-                //Change selected customers city
-                if (selectedEmployee.Password == password)
+                var selectedEmployer = db.Employers.Where(em => em.EmployerId == ID).FirstOrDefault();
+                var selectedEmployee = db.Employees.Where(e => e.EmployeeId == ID).FirstOrDefault();
+                if (selectedEmployer == null && selectedEmployee != null)
                 {
-                    message = "Login Successful";
-                    logedin = true;
-                    emp = selectedEmployee;//db.Employees.Find(employeeID);
-                    return logedin;
+                    if (selectedEmployee.Password == password)
+                    {
+                        message = "Employee Login Successful";
+                        logedin = true;
+                        employee = selectedEmployee;//db.Employees.Find(employeeID);
+                        employer = null;
+                        return logedin;
+                    }
+                    else
+                    {
+                        message = "Please Check your username and password";
+                        logedin = false;
+                        employee = null;
+                        employer = null;
+                        return logedin;
+                    }
+                }
+                else if (selectedEmployer != null && selectedEmployee == null) 
+                {
+                    if (selectedEmployer.Password == password)
+                    {
+                        message = "Admin Login Successful";
+                        logedin = true;
+                        employee = null;
+                        employer = selectedEmployer;
+                        return logedin;
+                    }
+                    else
+                    {
+                        message = "Please Check your username and password";
+                        logedin = false;
+                        employee = null;
+                        employer = null;
+                        return logedin;
+                    }
                 }
                 else
                 {
-                    message = "Please Check your username and password";
+                    message = "Error Loging in";
                     logedin = false;
-                    emp = null;
+                    employee = null;
+                    employer = null;
                     return logedin;
                 }
-                
+
             }
         }
     }

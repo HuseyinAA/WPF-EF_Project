@@ -25,11 +25,13 @@ namespace MidCourseProjectWPF
         DatabaseManager manager = new DatabaseManager();
 
         private EmployeeDashboard _EmpDashWin;
+        private AdminDashBoard _AdmDashWin;
         private RegisterWindow _regWin = new RegisterWindow();
 
         Globals g = new Globals();
 
         private Employee _employee = new Employee();
+        private Employer _employer = new Employer();
 
         private string username, password;
         
@@ -61,9 +63,10 @@ namespace MidCourseProjectWPF
             username = usernameLoginTxt.Text;
             password = passwordLoginTxt.Password;
 
-            if(manager.CheckLoginStatus(username, password, out string message, out Employee emp)) 
+            if(manager.CheckLoginStatus(username, password, out string message, out Employee employee, out Employer employer)) 
             {
-                _employee = emp;
+                _employee = employee;
+                _employer = employer;
                 //g.MessageNotify(message, "Login successful");
                 result = true;
             }
@@ -71,7 +74,6 @@ namespace MidCourseProjectWPF
             {
                 g.MessageNotify(message, "Error loging in");
             }
-
             return result;
         }
 
@@ -80,18 +82,26 @@ namespace MidCourseProjectWPF
         {
             if (CheckLoginDetails())
             {
-                if (_employee.IsWorking == 1)
+                if(_employee != null)
                 {
-                    _EmpDashWin = new EmployeeDashboard(_employee);
-                    _EmpDashWin.Show();
+                    if (_employee.IsWorking == 1)
+                    {
+                        _EmpDashWin = new EmployeeDashboard(_employee);
+                        _EmpDashWin.Show();
+                        Hide();
+                    }
+                    else
+                    {
+                        g.MessageNotify("Unable to Log in! You will need to wait for your admin to confrim your account", "Awating Admin confirmation");
+                    }
+                }
+                else if(_employer != null)
+                {
+                    _AdmDashWin = new AdminDashBoard(_employer);
+                    _AdmDashWin.Show();
                     Hide();
                 }
-                else
-                {
-                    g.MessageNotify("Unable to Log in! You will need to wait for your admin to confrim your account", "Awating Admin confirmation");
-                }
             }
-            
         }
     }
 }

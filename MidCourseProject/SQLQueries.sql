@@ -34,7 +34,17 @@ CREATE TABLE Employer
 	password varchar(MAX) NOT NULL,
 )
 
-SELECT * FROM Employee
+SELECT * FROM Employer
+
+-----ADDING ADMIN
+--INSERT INTO Employer (employerID, firstName, lastName, password)
+--VALUES ('Admin01', 'Nishant', 'Mandal', 'Admin123'); 
+
+
+-----Manual Update employee position and data
+--UPDATE Employee
+--SET position = 'Basic Staff', isWorking = 1
+--WHERE employeeID = 'trkmj';
 
 --DROP TABLE Employer;
 

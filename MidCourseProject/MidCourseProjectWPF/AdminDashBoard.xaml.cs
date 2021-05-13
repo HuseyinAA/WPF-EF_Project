@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MidCourseProjectBusiness;
+using MidCourseProjectModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,36 +13,28 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using MidCourseProjectModel;
-using MidCourseProjectBusiness;
 
 namespace MidCourseProjectWPF
 {
     /// <summary>
-    /// Interaction logic for EmployeeDashboard.xaml
+    /// Interaction logic for AdminDashBoard.xaml
     /// </summary>
-    public partial class EmployeeDashboard : Window
+    public partial class AdminDashBoard : Window
     {
         DatabaseManager manager = new DatabaseManager();
         public static MainWindow mainWin = new MainWindow();
 
         Globals g = new Globals();
 
-        private Employee _employee = new Employee();
-        private EmployeeClock _employeeClocks = new EmployeeClock();
+        private Employer _employer = new Employer();
 
-        List<Employee> emp = new List<Employee>();
-
-        public EmployeeDashboard(Employee employee)
+        public AdminDashBoard(Employer employer)
         {
             InitializeComponent();
-            _employee = employee;
-            greetingLbl.Content = $"{_employee.EmployeeId} - Hello {_employee.FirstName} {_employee.LastName}";
-            emp = manager.JoiningEmployerWithEmployerClockToRetreiveData(_employee.EmployeeId);
-            HoursListView.ItemsSource = emp;
+            _employer = employer;
+            greetingLbl.Content = $"{_employer.EmployerId} - Hello {_employer.FirstName} {_employer.LastName}";
         }
-
-        public EmployeeDashboard()
+        public AdminDashBoard()
         {
             InitializeComponent();
             greetingLbl.Content = "Nothing passed through to display";

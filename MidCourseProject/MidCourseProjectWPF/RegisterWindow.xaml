@@ -6,6 +6,13 @@
         xmlns:local="clr-namespace:MidCourseProjectWPF"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="MidCourseProjectWPF.RegisterWindow"
         mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="#FFFAFAFA"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         Title="Sparta Hub - Register" Height="540" Width="992" MinWidth="992" MaxWidth="992" MinHeight="540" MaxHeight="540" WindowStartupLocation="CenterScreen">
     <Grid>
         <materialDesign:Card Padding="32,32,32,32" Width="854" HorizontalAlignment="Center" Margin="0,107,0,21">

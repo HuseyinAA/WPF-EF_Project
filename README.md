@@ -70,11 +70,11 @@ Here is a Entity relationship diagram of my database.
 
 ***Start of the day Kanban Board***
 
-![11_05_2021_Second.](/Images/Kanban/11_05_2021_Second..PNG)
+![11_05_2021_Second SPRINT](/Images/Kanban/11_05_2021_Second..PNG)
 
 ***End of the day Kanban Board*** 
 
-![12_05_2021_second](/Images/Kanban/12_05_2021_second.PNG)
+![12_05_2021_second SPRINT](/Images/Kanban/12_05_2021_second.PNG)
 
 **Sprint 2 Goals**
 
@@ -104,11 +104,11 @@ I noticed that I had underestimated this sprint as I managed to finish it ahead 
 
 ***Start of the day Kanban Board***
 
-
+![12_05_2021_second SPRINT](/Images/Kanban/12_05_2021_second.PNG)
 
 ***End of the day Kanban Board*** 
 
-
+![13_05_2021_second SPRINT](/Images/Kanban/13_05_2021_second.PNG)
 
 **Sprint 2 Goals**
 

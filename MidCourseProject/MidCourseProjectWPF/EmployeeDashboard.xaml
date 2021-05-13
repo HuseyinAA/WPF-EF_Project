@@ -5,13 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MidCourseProjectWPF"
         mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="#FFFAFAFA"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         Title="Sparta Hub - Dashboard" Height="540" Width="992" MinWidth="992" MaxWidth="992" MinHeight="540" MaxHeight="540" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Image HorizontalAlignment="Center" Height="100" Margin="0,10,0,0" VerticalAlignment="Top" Width="162" Source="/sparta-logo-4020.png"/>
         <Button
             Style="{StaticResource MaterialDesignOutlinedButton}"
             ToolTip="MaterialDesignOutlinedButton"
-            Content="SIGN OUT" Margin="825,29,55,463" BorderBrush="#FFD23459" Foreground="#FFD23459" FontWeight="Bold" Click="Button_Click" />
-        <Label x:Name="greetingLbl" Content="Label" HorizontalAlignment="Left" Margin="433,168,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+            Content="SIGN OUT" Margin="825,29,0,0" BorderBrush="#FFD23459" Foreground="#FFD23459" FontWeight="Bold" Click="Button_Click" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="112" />
+        <Label x:Name="greetingLbl" Content="Label" HorizontalAlignment="Left" Margin="24,38,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <Button
+            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+            ToolTip="MaterialDesignFlatLightButton"
+            Content="ADD" Margin="636,139,284,353" Height="32" BorderBrush="#FF1AB2DE" Background="#FF0BC0F5"/>
+        <Button
+            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+            ToolTip="MaterialDesignFlatLightButton"
+            Content="UPDATE" Margin="741,139,164,353" Height="32" BorderBrush="#FF1AB2DE" Background="#FF0BC0F5"/>
+        <Button
+            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+            ToolTip="MaterialDesignFlatLightButton"
+            Content="DELETE" Margin="856,139,55,353" Height="32" BorderBrush="#FF1AB2DE" Background="#FF0BC0F5"/>
+        <ListView
+            Name="HoursListView" Margin="10,139,0,0" Height="364" VerticalAlignment="Top" HorizontalAlignment="Left" Width="551">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding ClockDate}"
+                        Header="DATE" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding ClockIn}"
+                        Header="Start Time" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding ClockOut}"
+                        Header="End time" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding HrPay}"
+                        Header="Hourly Pay" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding TotalPay}"
+                        Header="Total"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox
+            x:Name="NameTextBox"
+            materialDesign:HintAssist.Hint="Name"
+            materialDesign:HintAssist.HelperText="Helper text longer than error">
+            <TextBox.Text>
+                <Binding
+                Path="Name"
+                UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <domain:NotEmptyValidationRule
+          ValidatesOnTargetUpdated="True" xmlns:domain="clr-namespace:MaterialDesignDemo.Domain" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
     </Grid>
 </Window>
