@@ -87,6 +87,36 @@ namespace MidCourseProjectBusiness
             // 
         }
 
+        public bool UpdateEmployeeClocks(int selectedID, EmployeeClock employeeClock, out string message)
+        {
+            bool isUpdatable = false;
+            if(employeeClock != null)
+            {
+                using (var db = new HrDBContext())
+                {
+                    //Selecting employee
+                    var selectedEmployeeClock = db.EmployeeClocks
+                        .Where(em => em.EmployeeClockId == selectedID).FirstOrDefault();
+                        //.Where(emc => emc.ClockDate == employeeClock.ClockDate).FirstOrDefault();
+                    //Change to these:
+                    selectedEmployeeClock.ClockDate = employeeClock.ClockDate;
+                    selectedEmployeeClock.ClockIn = employeeClock.ClockIn;
+                    selectedEmployeeClock.ClockOut = employeeClock.ClockOut;
+                    selectedEmployeeClock.TotalPay = employeeClock.TotalPay;
+                    //Save changes to DB
+                    db.SaveChanges();
+                    message = "Update successful!";
+                    isUpdatable = true;
+                }
+            }
+            else
+            {
+                message = "Update Failed";
+                isUpdatable = false;
+            }
+            return isUpdatable;
+        }
+
 
 
         //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- READ -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -113,7 +143,7 @@ namespace MidCourseProjectBusiness
             using (var db  = new HrDBContext())
             {
                 //var selectedEmployeeClocks = db.EmployeeClocks.Where(e => e.EmployeeId == ID).Include(ec => ec.Employee).FirstOrDefault();
-                return db.EmployeeClocks.Where(e => e.EmployeeId == ID).Include(ec => ec.Employee).ToList();
+                return db.EmployeeClocks.Where(e => e.EmployeeId == ID).Include(ec => ec.Employee).OrderByDescending(d => d.ClockDate).ToList();
                 //return setEmpclock;
             }
         }

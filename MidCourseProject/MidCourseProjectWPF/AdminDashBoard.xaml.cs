@@ -31,8 +31,16 @@ namespace MidCourseProjectWPF
         public AdminDashBoard(Employer employer)
         {
             InitializeComponent();
-            _employer = employer;
-            greetingLbl.Content = $"{_employer.EmployerId} - Hello {_employer.FirstName} {_employer.LastName}";
+            if(employer.FirstName != null && employer.LastName != null)
+            {
+                _employer = employer;
+                greetingLbl.Content = $"{_employer.FirstName} {_employer.LastName}";
+            }
+            else
+            {
+                //Display dialoge box to show data
+            }
+            
         }
         public AdminDashBoard()
         {

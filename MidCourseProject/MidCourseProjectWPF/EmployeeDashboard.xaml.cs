@@ -30,7 +30,11 @@ namespace MidCourseProjectWPF
         private EmployeeClock _employeeClocks = new EmployeeClock();
 
         List<EmployeeClock> empList = new List<EmployeeClock>();
-        
+
+        private DateTime _selectedDate;
+        private DateTime? _selectedClockIn;
+        private DateTime? _selectedClockOut;
+        private int _selectedEmployeeClockID;
 
         public EmployeeDashboard(Employee employee)
         {
@@ -83,10 +87,16 @@ namespace MidCourseProjectWPF
             DateTime cin = ClockInPicker.SelectedTime.Value;
             DateTime cout = ClockOutPicker.SelectedTime.Value;
 
-            var difference = (cin - cout);
-            var totalHours = difference.Hours;
+            var difference = cin - cout;
+            
+            var totalMins = Math.Abs(difference.Minutes);
+            var totalHours = Math.Abs(difference.Hours);
 
-            _employeeClocks.TotalPay = (totalHours * _employee.HrRate);
+            var totalhourlyPay = (totalHours * _employee.HrRate);
+            var totalMinDiv = totalMins / 60.0;
+            var totalMinPay = (Decimal)totalMinDiv * _employee.HrRate;
+            var totalPay = totalhourlyPay + totalMinPay;
+            _employeeClocks.TotalPay = totalPay;
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -106,6 +116,49 @@ namespace MidCourseProjectWPF
                 else
                 {
                     g.MessageNotify(message, "Failed");
+                }
+            }
+        }
+
+        private void UpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(HoursListView.SelectedItem != null)
+            {
+                if (BasicCheck())
+                {
+                    //Update data
+                    if (manager.UpdateEmployeeClocks(_selectedEmployeeClockID, _employeeClocks, out string message))
+                    {
+                        g.MessageNotify(message, "Updated!");
+                        empList = manager.EmployerWithEmployerClockToRetreiveData(_employee.EmployeeId);
+                        HoursListView.ItemsSource = empList;
+                    }
+                    else
+                    {
+                        g.MessageNotify(message, "Error Updating");
+                    }
+                }
+            }
+            else
+            {
+                g.MessageNotify("Make sure to select a shift to edit!", "No Shifts selected");
+            }
+        }
+
+        private void HoursListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(HoursListView.SelectedItem != null)
+            {
+                EmployeeClock currentItem = HoursListView.SelectedItem as EmployeeClock;
+                _selectedEmployeeClockID = currentItem.EmployeeClockId;
+                _selectedDate = currentItem.ClockDate;
+                _selectedClockIn = currentItem.ClockIn;
+                DatePicker.SelectedDate = _selectedDate;
+                ClockInPicker.SelectedTime = _selectedClockIn;
+                if (currentItem.ClockOut != null)
+                {
+                    _selectedClockOut = currentItem.ClockOut;
+                    ClockOutPicker.SelectedTime = _selectedClockOut;
                 }
             }
         }

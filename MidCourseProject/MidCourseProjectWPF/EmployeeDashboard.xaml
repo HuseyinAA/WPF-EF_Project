@@ -18,9 +18,19 @@
         <Image HorizontalAlignment="Center" Height="100" Margin="0,10,0,0" VerticalAlignment="Top" Width="162" Source="/sparta-logo-4020.png"/>
         <Button
             Style="{StaticResource MaterialDesignOutlinedButton}"
-            ToolTip="MaterialDesignOutlinedButton"
+            ToolTip="Sign out"
             Content="SIGN OUT" Margin="825,29,55,0" BorderBrush="#FFD23459" Foreground="#FFD23459" FontWeight="Bold" Click="Button_Click" Height="32" VerticalAlignment="Top" />
-        <materialDesign:Chip x:Name="greetingLbl" Content="Users_Name_Here" IconBackground="{x:Null}" IconForeground="{x:Null}" Background="#E5D23459" BorderBrush="#FFBB2649" Foreground="White" FontWeight="Bold" Height="32" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Margin="55,29,805,0" HorizontalAlignment="Stretch" BorderThickness="1,1,1,1" />
+        <materialDesign:Chip x:Name="greetingLbl"
+          Content="Users_Name_Here"
+          IconBackground="#FFC74363" VerticalAlignment="Top" Margin="55,29,0,0" Width="165" Background="#FFC74363" Foreground="#FFE7E7EA" FontWeight="Bold">
+            <materialDesign:Chip.IconForeground>
+                <SolidColorBrush Color="White" Opacity="1"/>
+            </materialDesign:Chip.IconForeground>
+            <materialDesign:Chip.Icon>
+                <materialDesign:PackIcon
+                Kind="Account" />
+            </materialDesign:Chip.Icon>
+        </materialDesign:Chip>
         <Rectangle HorizontalAlignment="Left" Margin="628,139,0,0" Width="329" Height="263" VerticalAlignment="Top" Stroke="#FFD23459" StrokeThickness="1.2" Stretch="Fill" StrokeDashCap="Round">
             <Rectangle.Fill>
                 <SolidColorBrush Color="#4C343434" Opacity="0.6"/>
@@ -29,43 +39,43 @@
         <Label x:Name="titlelabel_instructions" Content="Placeholder" HorizontalAlignment="Left" Margin="650,152,0,0" VerticalAlignment="Top" Width="286" FontWeight="Bold" Height="49" ClipToBounds="True"/>
         <Button x:Name="AddBtn"
             Style="{StaticResource MaterialDesignFlatLightBgButton}"
-            ToolTip="MaterialDesignFlatLightButton"
+            ToolTip="Add your shifts to the list"
             Content="ADD" Margin="650,355,0,0" Height="32" BorderBrush="#FF1AB2DE" Background="#FF0BC0F5" VerticalAlignment="Top" HorizontalAlignment="Left" Width="135" Click="AddBtn_Click"/>
         <Button x:Name="UpdateBtn"
             Style="{StaticResource MaterialDesignFlatLightBgButton}"
-            ToolTip="MaterialDesignFlatLightButton"
-            Content="UPDATE" Margin="792,355,0,0" Height="32" BorderBrush="#FF1AB2DE" Background="#FF0BC0F5" VerticalAlignment="Top" HorizontalAlignment="Left" Width="145"/>
+            ToolTip="Update a selected shift"
+            Content="UPDATE" Margin="792,355,0,0" Height="32" BorderBrush="#FF1AB2DE" Background="#FF0BC0F5" VerticalAlignment="Top" HorizontalAlignment="Left" Width="145" Click="UpdateBtn_Click"/>
 
         <DatePicker x:Name="DatePicker"
             materialDesign:HintAssist.Hint="Pick Date"
-            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="792,0,56,270" VerticalAlignment="Bottom" Height="34" />
+            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="792,220,0,0" VerticalAlignment="Top" Height="34" HorizontalAlignment="Left" Width="144" />
         <materialDesign:TimePicker x:Name="ClockInPicker"
-            materialDesign:HintAssist.Hint="Pick Time"
-            IsInvalidTextAllowed="True" Is24Hours="True" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="792,261,0,0" Width="144" Height="34"/>
+            materialDesign:HintAssist.Hint="Pick Time (Hours only)"
+            IsInvalidTextAllowed="True" Is24Hours="True" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="792,261,0,0" Width="144" Height="34" InputScope="TimeHour"/>
         <materialDesign:TimePicker x:Name="ClockOutPicker"
-            materialDesign:HintAssist.Hint="Pick Time"
+            materialDesign:HintAssist.Hint="Pick Time (Hours only)"
             IsInvalidTextAllowed="True" Is24Hours="True" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="792,302,0,0" Width="144" Height="34"/>
         <Label Content="Date:" HorizontalAlignment="Left" Margin="650,232,0,0" VerticalAlignment="Top" Width="125"/>
         <Label Content="Clock In:" HorizontalAlignment="Left" Margin="650,273,0,0" VerticalAlignment="Top" Width="125"/>
         <Label Content="Clock Out:" HorizontalAlignment="Left" Margin="650,314,0,0" VerticalAlignment="Top" Width="125"/>
         <ListView
-            Name="HoursListView" Margin="10,139,0,0" Height="364" VerticalAlignment="Top" HorizontalAlignment="Left" Width="587">
+            Name="HoursListView" Margin="10,139,0,0" Height="364" VerticalAlignment="Top" HorizontalAlignment="Left" Width="587" ScrollViewer.CanContentScroll="True" SelectionChanged="HoursListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
-                        DisplayMemberBinding="{Binding clockDate}"
+                        DisplayMemberBinding="{Binding ClockDate, StringFormat='dd-MM-yyyy'}"
                         Header="DATE" />
                     <GridViewColumn
-                        DisplayMemberBinding="{Binding clockIn}"
+                        DisplayMemberBinding="{Binding ClockIn, StringFormat='HH:mm:ss.fff'}"
                         Header="Start Time" />
                     <GridViewColumn
-                        DisplayMemberBinding="{Binding clockOut}"
+                        DisplayMemberBinding="{Binding ClockOut, StringFormat='HH:mm:ss.fff'}"
                         Header="End time" />
                     <GridViewColumn
-                        DisplayMemberBinding="{Binding HrPay}"
+                        DisplayMemberBinding="{Binding Employee.HrRate, StringFormat=£{0:#.00}}"
                         Header="Hourly Pay" />
                     <GridViewColumn
-                        DisplayMemberBinding="{Binding totalPay}"
+                        DisplayMemberBinding="{Binding TotalPay, StringFormat=£{0:#.00}}"
                         Header="Total"/>
                 </GridView>
             </ListView.View>

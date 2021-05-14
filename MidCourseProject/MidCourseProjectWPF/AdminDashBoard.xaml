@@ -18,9 +18,52 @@
         <Image HorizontalAlignment="Center" Height="100" Margin="0,10,0,0" VerticalAlignment="Top" Width="162" Source="/sparta-logo-4020.png"/>
         <Button
             Style="{StaticResource MaterialDesignOutlinedButton}"
-            ToolTip="MaterialDesignOutlinedButton"
-            Content="SIGN OUT" Margin="825,29,55,463" BorderBrush="#FFD23459" Foreground="#FFD23459" FontWeight="Bold" Click="Button_Click" />
-        <Label x:Name="greetingLbl" Content="Label" HorizontalAlignment="Left" Margin="24,38,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-
+            ToolTip="Sign out"
+            Content="SIGN OUT" Margin="825,29,55,0" BorderBrush="#FFD23459" Foreground="#FFD23459" FontWeight="Bold" Click="Button_Click" Height="32" VerticalAlignment="Top" />
+        <materialDesign:Chip x:Name="greetingLbl"
+            Content="Users_Name_Here"
+            IconBackground="#FFC74363" VerticalAlignment="Top" Margin="55,29,0,0" Width="165" Background="#FFC74363" Foreground="#FFE7E7EA" FontWeight="Bold">
+            <materialDesign:Chip.IconForeground>
+                <SolidColorBrush Color="White" Opacity="1"/>
+            </materialDesign:Chip.IconForeground>
+            <materialDesign:Chip.Icon>
+                <materialDesign:PackIcon
+                    Kind="AccountSecure" />
+            </materialDesign:Chip.Icon>
+        </materialDesign:Chip>
+        <Rectangle HorizontalAlignment="Left" Margin="528,139,0,0" Width="454" Height="364" VerticalAlignment="Top" Stroke="#FFD23459" StrokeThickness="1.2" Stretch="Fill" StrokeDashCap="Round">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#4C343434" Opacity="0.6"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label x:Name="titlelabel_instructions" Content="Placeholder" HorizontalAlignment="Left" Margin="560,152,0,0" VerticalAlignment="Top" Width="394" FontWeight="Bold" Height="49" ClipToBounds="True"/>
+        <Button x:Name="ViewDetailsBtn"
+            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+            ToolTip="Add your shifts to the list"
+            Content="VIEW DETAILS" Margin="537,455,0,0" Height="32" BorderBrush="#FF1AB2DE" Background="#FF0BC0F5" VerticalAlignment="Top" HorizontalAlignment="Left" Width="136"/>
+        <Button x:Name="UpdateBtn"
+            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+            ToolTip="Update a selected shift"
+            Content="UPDATE" Margin="678,455,0,0" Height="32" BorderBrush="#FF1AB2DE" Background="#FF0BC0F5" VerticalAlignment="Top" HorizontalAlignment="Left" Width="146"/>
+        <Button x:Name="RemoveBtn"
+            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+            ToolTip="Update a selected shift"
+            Content="REMOVE" Margin="829,455,0,0" Height="32" BorderBrush="#FF1AB2DE" Background="#FF0BC0F5" VerticalAlignment="Top" HorizontalAlignment="Left" Width="146"/>
+        <ListView
+            x:Name="HoursListView" Margin="10,139,0,0" Height="364" VerticalAlignment="Top" HorizontalAlignment="Left" Width="486" ScrollViewer.CanContentScroll="True" SelectionChanged="HoursListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding FirstName}"
+                        Header="First Name" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding LastName}"
+                        Header="Last Name" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Position}"
+                        Header="Position" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
