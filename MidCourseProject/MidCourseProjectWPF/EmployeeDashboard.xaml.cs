@@ -41,7 +41,7 @@ namespace MidCourseProjectWPF
             InitializeComponent();
             _employee = employee;
             greetingLbl.Content = $"{_employee.FirstName} {_employee.LastName}";
-            empList = manager.EmployerWithEmployerClockToRetreiveData(_employee.EmployeeId);
+            empList = manager.RetreiveEmployeeClocksData(_employee.EmployeeId);
             HoursListView.ItemsSource = empList;
             titlelabel_instructions.Content = "Here you can either Add new clocking times \nor update them.";
             //HoursListView.UpdateLayout();
@@ -110,7 +110,7 @@ namespace MidCourseProjectWPF
                 if (manager.CreateCustomerClock(_employeeClocks, out string message))
                 {
                     g.MessageNotify(message, "Saved!");
-                    empList = manager.EmployerWithEmployerClockToRetreiveData(_employee.EmployeeId);
+                    empList = manager.RetreiveEmployeeClocksData(_employee.EmployeeId);
                     HoursListView.ItemsSource = empList;
                 }
                 else
@@ -130,7 +130,7 @@ namespace MidCourseProjectWPF
                     if (manager.UpdateEmployeeClocks(_selectedEmployeeClockID, _employeeClocks, out string message))
                     {
                         g.MessageNotify(message, "Updated!");
-                        empList = manager.EmployerWithEmployerClockToRetreiveData(_employee.EmployeeId);
+                        empList = manager.RetreiveEmployeeClocksData(_employee.EmployeeId);
                         HoursListView.ItemsSource = empList;
                     }
                     else

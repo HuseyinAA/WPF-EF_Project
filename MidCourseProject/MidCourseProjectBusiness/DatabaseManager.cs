@@ -76,10 +76,32 @@ namespace MidCourseProjectBusiness
             // Passing an emp to the HrDBContext
         }
 
-        public void AdminUpdatingCustomer(Employee emp) //Only password or 
+        public bool AdminUpdatingCustomer(string selectedID, Employee emp) //Only password or 
         {
             // Passing an emp to the HrDBContext
             // Admin updates customer poisition, IsWorking and Pay;
+            bool isUpdatable = false;
+            if (emp != null)
+            {
+                using (var db = new HrDBContext())
+                {
+                    //Selecting employee
+                    var selectedEmployee = db.Employees
+                        .Where(em => em.EmployeeId == selectedID).FirstOrDefault();
+                    //Change to these:
+                    selectedEmployee.IsWorking = emp.IsWorking;
+                    selectedEmployee.Position = emp.Position;
+                    selectedEmployee.HrRate = emp.HrRate;
+                    //Save changes to DB
+                    db.SaveChanges();
+                    isUpdatable = true;
+                }
+            }
+            else
+            {
+                isUpdatable = false;
+            }
+            return isUpdatable;
         }
 
         public void DeleteCustomer() //Remove customer - only Admin available
@@ -138,7 +160,44 @@ namespace MidCourseProjectBusiness
             // 
         }
 
-        public List<EmployeeClock> EmployerWithEmployerClockToRetreiveData(string ID)
+        public List<Employee> EmployerRetreiveEmployeeData()
+        {
+            using (var db = new HrDBContext())
+            {
+                //var selectedEmployeeClocks = db.EmployeeClocks.Where(e => e.EmployeeId == ID).Include(ec => ec.Employee).FirstOrDefault();
+                return db.Employees.Include(ec => ec.EmployeeClocks).ToList();
+                //return setEmpclock;
+            }
+        }
+
+        //Only Selected Position will display -- position Filter
+        public List<Employee> EmployerRetreiveEmployeeData_Positions(string ID, string position)
+        {
+            using (var db = new HrDBContext())
+            {
+                return db.Employees.Where(e => e.EmployeeId == ID).Where(p => p.Position == position).Include(ec => ec.EmployeeClocks).ToList();
+            }
+        }
+
+        //Only Selected Name will display -- search Filter
+        public List<Employee> EmployerRetreiveEmployeeData_Search(string ID, string search, out string message)
+        {
+            using (var db = new HrDBContext())
+            {
+                try
+                {
+                    message = "Success!";
+                    return db.Employees.Where(e => e.EmployeeId == ID).Where(p => p.FirstName.Contains(search) || p.LastName.Contains(search)).ToList();
+                }
+                catch (Exception error)
+                {
+                    message = error.Message;
+                    return null;
+                }
+            }
+        }
+
+        public List<EmployeeClock> RetreiveEmployeeClocksData(string ID)
         {
             using (var db  = new HrDBContext())
             {
