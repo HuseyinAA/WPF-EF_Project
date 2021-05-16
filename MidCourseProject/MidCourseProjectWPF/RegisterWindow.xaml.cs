@@ -98,7 +98,7 @@ namespace MidCourseProjectWPF
                         _employee.IsWorking = 0; /// FALSE = 0 || TRUE = 1
                         _employee.HrRate = 10;
                         _employee.Position = "Awaiting Admin confirmation";
-                        if (manager.CreateCustomer(_employee, out errorMessage))
+                        if (manager.CreateEmployee(_employee, out errorMessage))
                         {
                             g.MessageNotify(errorMessage, "Registeration successful");
                             _mainWin.Show();//NEEDS CHANGING!!!!!!!!
@@ -136,7 +136,7 @@ namespace MidCourseProjectWPF
             bool verResult = false;
             _caption = "Value entered for Password not acceptable.".ToUpper();
             _message = "Make sure to use a memorable 8 character long password.".ToUpper();
-            if (passwordTxtbx.Password.Length > 8 && passwordTxtbx.Password.Length < 12)
+            if (passwordTxtbx.Password.Length >= 8 && passwordTxtbx.Password.Length < 12)
             {
                 _employee.Password = passwordTxtbx.Password;
                 verResult = true;

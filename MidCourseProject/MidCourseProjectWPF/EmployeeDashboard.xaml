@@ -22,7 +22,7 @@
             Content="SIGN OUT" Margin="825,29,55,0" BorderBrush="#FFD23459" Foreground="#FFD23459" FontWeight="Bold" Click="Button_Click" Height="32" VerticalAlignment="Top" />
         <materialDesign:Chip x:Name="greetingLbl"
           Content="Users_Name_Here"
-          IconBackground="#FFC74363" VerticalAlignment="Top" Margin="55,29,0,0" Width="165" Background="#FFC74363" Foreground="#FFE7E7EA" FontWeight="Bold">
+          IconBackground="#FFC74363" VerticalAlignment="Top" Margin="55,29,0,0" Width="165" Background="#FFC74363" Foreground="#FFE7E7EA" FontWeight="Bold" Click="greetingLbl_Click">
             <materialDesign:Chip.IconForeground>
                 <SolidColorBrush Color="White" Opacity="1"/>
             </materialDesign:Chip.IconForeground>

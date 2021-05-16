@@ -1,0 +1,71 @@
+﻿<Window x:Class="MidCourseProjectWPF.Popups.ViewEmployeeDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MidCourseProjectWPF.Popups"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="#FFFAFAFA"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        Height="400" Width="500" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" MinWidth="500" MaxWidth="500" MinHeight="400" MaxHeight="400" Padding="10,0,10,0">
+    <Grid Width="500">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="493*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle HorizontalAlignment="Left" Margin="36,238,0,0" Width="428" Height="89" VerticalAlignment="Top" Stroke="#FFD23459" StrokeThickness="1.2" Stretch="Fill" StrokeDashCap="Round">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#4C343434" Opacity="0.6"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Button x:Name="SaveBtn"
+            Style="{StaticResource MaterialDesignFlatButton}"
+            ToolTip="Save Changes"
+            Content="SAVE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Margin="100,343,0,0" Foreground="#FFD23459" FontWeight="Bold" HorizontalAlignment="Left" Width="114" Click="SaveBtn_Click" />
+        <Button x:Name="Cancel_Btn"
+            Style="{StaticResource MaterialDesignFlatButton}"
+            ToolTip="Cancel Changes"
+            Content="CANCEL" Margin="0,343,93,0" Foreground="#FFD23459" FontWeight="Bold" HorizontalAlignment="Right" Width="114" Height="32" VerticalAlignment="Top" Click="Cancel_Btn_Click" />
+        <Label Content="Your Details" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-341363081.396,81540979.099" FontSize="16" FontWeight="Bold"/>
+        <Label Content="If you want to edit your details select the edit toggle on the top right." HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="-341363081.396,81540979.099" FontSize="10"/>
+        <ToggleButton x:Name="EditableCheckBox"
+            Style="{StaticResource MaterialDesignSwitchToggleButton}"
+            ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background" Margin="0,10,3,0" HorizontalAlignment="Right" Width="81" Height="35" VerticalAlignment="Top" Background="#FFD23459" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Red" Click="EditableCheckBox_Click"/>
+        <Label Content="Edit" HorizontalAlignment="Left" Margin="379,16,0,0" VerticalAlignment="Top" RenderTransformOrigin="-341363081.396,81540979.099" FontWeight="Bold"/>
+        <Label x:Name="UsernameLbl" Content="Username:" HorizontalAlignment="Left" Margin="62,246,0,0" VerticalAlignment="Top" RenderTransformOrigin="-341363081.396,81540979.099" FontWeight="Bold"/>
+        <Label x:Name="AccountStatusLbl" Content="Account Status:" HorizontalAlignment="Left" Margin="270,246,0,0" VerticalAlignment="Top" RenderTransformOrigin="-341363081.396,81540979.099" FontWeight="Bold"/>
+        <Label x:Name="PositionLbl" Content="Position:" HorizontalAlignment="Left" Margin="62,282,0,0" VerticalAlignment="Top" RenderTransformOrigin="-341363081.396,81540979.099" FontWeight="Bold"/>
+        <Label x:Name="HourlyRateLbl" Content="Hourly Rate:" HorizontalAlignment="Left" Margin="270,282,0,0" VerticalAlignment="Top" RenderTransformOrigin="-341363081.396,81540979.099" FontWeight="Bold"/>
+        <TextBox
+            x:Name="FirstNameTextBox"
+            materialDesign:HintAssist.Hint="First Name" Margin="36,0,0,300" HorizontalAlignment="Left" Width="194" Height="30" VerticalAlignment="Bottom"/>
+        <TextBox
+            x:Name="LastNameTextBox"
+            materialDesign:HintAssist.Hint="Last Name" Margin="0,0,29,300" HorizontalAlignment="Right" Width="194" Height="30" VerticalAlignment="Bottom"/>
+        <TextBox
+            x:Name="AddressTextBox"
+            materialDesign:HintAssist.Hint="Address" Margin="0,0,226,262" HorizontalAlignment="Right" Width="231" Height="30" VerticalAlignment="Bottom"/>
+        <TextBox
+            x:Name="CityTextBox"
+            materialDesign:HintAssist.Hint="City" Margin="0,0,29,262" HorizontalAlignment="Right" Width="154" Height="30" VerticalAlignment="Bottom"/>
+        <TextBox
+            x:Name="PostalCodeTextBox"
+            materialDesign:HintAssist.Hint="Postal Code" Margin="0,0,303,224" HorizontalAlignment="Right" Width="154" Height="30" VerticalAlignment="Bottom"/>
+        <TextBox
+            x:Name="PhoneTextBox"
+            materialDesign:HintAssist.HelperText="11 Digits Long"
+            materialDesign:HintAssist.Hint="Phone" Margin="0,0,26,224" HorizontalAlignment="Right" Width="197" Height="30" VerticalAlignment="Bottom"/>
+        <PasswordBox
+            x:Name="PasswordBox"
+            materialDesign:HintAssist.Hint="Password"
+            materialDesign:TextFieldAssist.HasClearButton="True"
+            materialDesign:HintAssist.HelperText="At least 8 characters" Margin="36,0,243,0" Height="30" VerticalAlignment="Center" PasswordChanged="PasswordBox_PasswordChanged" />
+    </Grid>
+</Window>

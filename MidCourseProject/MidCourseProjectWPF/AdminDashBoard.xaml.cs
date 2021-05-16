@@ -24,6 +24,7 @@ namespace MidCourseProjectWPF
     {
         DatabaseManager manager = new DatabaseManager();
         public static MainWindow mainWin = new MainWindow();
+        private ViewAdminDetails _ViewDetails;
 
         Globals g = new Globals();
 
@@ -47,7 +48,6 @@ namespace MidCourseProjectWPF
                 _empList = manager.EmployerRetreiveEmployeeData();
                 EmployeeListView.ItemsSource = _empList;
                 CheckIsWorkingNotifyer();
-                UpdateBtn.IsEnabled = false;
                 ViewDetails_Btn.IsEnabled = false;
                 RemoveBtn.IsEnabled = false;
             }
@@ -89,7 +89,6 @@ namespace MidCourseProjectWPF
             
             if (EmployeeListView.SelectedItem != null)
             {
-                UpdateBtn.IsEnabled = true;
                 ViewDetails_Btn.IsEnabled = true;
                 RemoveBtn.IsEnabled = true;
                 Employee currentItem = EmployeeListView.SelectedItem as Employee;
@@ -105,11 +104,23 @@ namespace MidCourseProjectWPF
         {
             viewDetail = new ViewDetails(_SelectEmployee);
             ViewDetails_Btn.IsEnabled = false;
-            UpdateBtn.IsEnabled = false;
             RemoveBtn.IsEnabled = false;
             viewDetail.ShowDialog();
             _empList = manager.EmployerRetreiveEmployeeData();
             EmployeeListView.ItemsSource = _empList;
+        }
+
+        private void greetingLbl_Click(object sender, RoutedEventArgs e)
+        {
+            _ViewDetails = new ViewAdminDetails(_employer);
+            _ViewDetails.ShowDialog();
+            greetingLbl.Content = $"{_employer.FirstName} {_employer.LastName}";
+        }
+
+        private void RemoveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //Remove selected Employee but first needs to be IsWorking switched to false
+            //then delete EmployeClocks related to Employee then delete Employee
         }
     }
 }

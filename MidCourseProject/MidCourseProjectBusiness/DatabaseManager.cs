@@ -12,7 +12,7 @@ namespace MidCourseProjectBusiness
     {
         ///CRUD FUNCTIONALITIES HERE!
         
-        public bool CreateCustomer(Employee emp, out string message)
+        public bool CreateEmployee(Employee emp, out string message)
         {
             // takes in emp and validates
             // checks and stores data into HrDBContext() through the db using keyword
@@ -33,13 +33,11 @@ namespace MidCourseProjectBusiness
                     re = false;
                 }
             }
-            //db.Customers.Add(newCustomer);
-            //db.SaveChanges();
 
             return re;
         }
 
-        public bool CreateCustomerClock(EmployeeClock empClock, out string message)
+        public bool CreateEmployeeClock(EmployeeClock empClock, out string message)
         {
             // takes in emp and validates
             // checks and stores data into HrDBContext() through the db using keyword
@@ -60,23 +58,125 @@ namespace MidCourseProjectBusiness
                     re = false;
                 }
             }
-            //db.Customers.Add(newCustomer);
-            //db.SaveChanges();
 
             return re;
         }
 
-        public void ChangePassword() // MIGHT NOT BET NEEDED
-        {
-            // 
-        }
-
-        public void UpdateCustomer(Employee emp) //Only password or 
+        public bool UpdateEmployee(string selectedID, Employee emp) //Only with no changes password
         {
             // Passing an emp to the HrDBContext
+            bool isUpdatable = false;
+            if (emp != null)
+            {
+                using (var db = new HrDBContext())
+                {
+                    //Selecting employee
+                    var selectedEmployee = db.Employees
+                        .Where(em => em.EmployeeId == selectedID).FirstOrDefault();
+                    //Change to these:
+                    selectedEmployee.FirstName = emp.FirstName;
+                    selectedEmployee.LastName = emp.LastName;
+                    selectedEmployee.Address = emp.Address;
+                    selectedEmployee.City = emp.City;
+                    selectedEmployee.PostCode = emp.PostCode;
+                    selectedEmployee.PhoneNumber = emp.PhoneNumber;
+                    //Save changes to DB
+                    db.SaveChanges();
+                    isUpdatable = true;
+                }
+            }
+            else
+            {
+                isUpdatable = false;
+            }
+            return isUpdatable;
         }
 
-        public bool AdminUpdatingCustomer(string selectedID, Employee emp) //Only password or 
+        public bool UpdateEmployeePassword(string selectedID, Employee emp) //Only changes password
+        {
+            // Passing an emp to the HrDBContext
+            bool isUpdatable = false;
+            if (emp != null)
+            {
+                using (var db = new HrDBContext())
+                {
+                    //Selecting employee
+                    var selectedEmployee = db.Employees
+                        .Where(em => em.EmployeeId == selectedID).FirstOrDefault();
+                    //Change to these:
+                    selectedEmployee.FirstName = emp.FirstName;
+                    selectedEmployee.LastName = emp.LastName;
+                    selectedEmployee.Address = emp.Address;
+                    selectedEmployee.City = emp.City;
+                    selectedEmployee.PostCode = emp.PostCode;
+                    selectedEmployee.PhoneNumber = emp.PhoneNumber;
+                    selectedEmployee.Password = emp.Password;
+                    //Save changes to DB
+                    db.SaveChanges();
+                    isUpdatable = true;
+                }
+            }
+            else
+            {
+                isUpdatable = false;
+            }
+            return isUpdatable;
+        }
+
+        public bool UpdateAdmin(string selectedID, Employer admin) //Only with no changes password
+        {
+            // Passing an emp to the HrDBContext
+            bool isUpdatable = false;
+            if (admin != null)
+            {
+                using (var db = new HrDBContext())
+                {
+                    //Selecting employee
+                    var selectedEmployer = db.Employers
+                        .Where(em => em.EmployerId == selectedID).FirstOrDefault();
+                    //Change to these:
+                    selectedEmployer.FirstName = admin.FirstName;
+                    selectedEmployer.LastName = admin.LastName;
+                    //Save changes to DB
+                    db.SaveChanges();
+                    isUpdatable = true;
+                }
+            }
+            else
+            {
+                isUpdatable = false;
+            }
+            return isUpdatable;
+        }
+
+        public bool UpdateAdminPassword(string selectedID, Employer admin) //Only changes password
+        {
+            // Passing an emp to the HrDBContext
+            bool isUpdatable = false;
+            if (admin != null)
+            {
+                using (var db = new HrDBContext())
+                {
+                    //Selecting employee
+                    var selectedEmployer = db.Employers
+                        .Where(em => em.EmployerId == selectedID).FirstOrDefault();
+                    //Change to these:
+                    selectedEmployer.FirstName = admin.FirstName;
+                    selectedEmployer.LastName = admin.LastName;
+                    selectedEmployer.Password = admin.Password;
+                    //Save changes to DB
+                    db.SaveChanges();
+                    isUpdatable = true;
+                }
+            }
+            else
+            {
+                isUpdatable = false;
+            }
+            return isUpdatable;
+        }
+
+        public bool AdminUpdatingEmployee(string selectedID, Employee emp) //Only password or 
         {
             // Passing an emp to the HrDBContext
             // Admin updates customer poisition, IsWorking and Pay;
@@ -104,7 +204,7 @@ namespace MidCourseProjectBusiness
             return isUpdatable;
         }
 
-        public void DeleteCustomer() //Remove customer - only Admin available
+        public void RemoveEmployee() //Remove customer - only Admin available
         {
             // 
         }

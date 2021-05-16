@@ -85,7 +85,7 @@ namespace MidCourseProjectWPF.Popups
                     _employee.IsWorking = IsChecked(EmployeeWorkStatusCheckBox.IsChecked);
                     _employee.Position = EmployeePositionsCombobox.Text;
 
-                    if (manager.AdminUpdatingCustomer(_employee.EmployeeId, _employee))
+                    if (manager.AdminUpdatingEmployee(_employee.EmployeeId, _employee))
                     {
                         this.Close();
                     }

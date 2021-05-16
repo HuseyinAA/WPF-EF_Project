@@ -23,7 +23,7 @@
             Content="SIGN OUT" Margin="825,29,55,0" BorderBrush="#FFD23459" Foreground="#FFD23459" FontWeight="Bold" Click="Button_Click" Height="32" VerticalAlignment="Top" />
         <materialDesign:Chip x:Name="greetingLbl"
                     Content="Users_Name_Here"
-                    IconBackground="#FFC74363" VerticalAlignment="Top" Margin="55,29,0,0" Width="165" Background="#FFC74363" Foreground="#FFE7E7EA" FontWeight="Bold">
+                    IconBackground="#FFC74363" VerticalAlignment="Top" Margin="55,29,0,0" Width="165" Background="#FFC74363" Foreground="#FFE7E7EA" FontWeight="Bold" Click="greetingLbl_Click">
             <materialDesign:Chip.IconForeground>
                 <SolidColorBrush Color="White" Opacity="1"/>
             </materialDesign:Chip.IconForeground>
@@ -39,18 +39,14 @@
         </Rectangle>
         <Label x:Name="titlelabel_instructions" Content="Placeholder" HorizontalAlignment="Left" Margin="427,0,0,337" VerticalAlignment="Bottom" Width="521" FontWeight="Bold" Height="38" ClipToBounds="True"/>
         <materialDesign:Badged x:Name="ViewDetailsBtn"
-            Badge="" Margin="464,0,0,36" VerticalAlignment="Bottom" BadgeBackground="#FFC74363" BadgeForeground="White" BadgePlacementMode="TopLeft">
+            Badge="" Margin="540,0,0,36" VerticalAlignment="Bottom" BadgeBackground="#FFC74363" BadgeForeground="White" BadgePlacementMode="TopLeft">
             <Button x:Name="ViewDetails_Btn"
                 Content="View Detail" Width="146" Background="#FF0BC0F5" BorderBrush="#FF1AB2DE" Foreground="#FF032F3C" Click="ViewDetails_Btn_Click" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
         </materialDesign:Badged>
-        <Button x:Name="UpdateBtn"
-            Style="{StaticResource MaterialDesignFlatLightBgButton}"
-            ToolTip="Update a selected shift"
-            Content="UPDATE" Margin="617,0,0,36" Height="32" BorderBrush="#FF1AB2DE" Background="#FF0BC0F5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="146"/>
         <Button x:Name="RemoveBtn"
             Style="{StaticResource MaterialDesignFlatLightBgButton}"
             ToolTip="Update a selected shift"
-            Content="REMOVE" Margin="770,0,0,36" Height="32" BorderBrush="#FF1AB2DE" Background="#FF0BC0F5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="146"/>
+            Content="REMOVE" Margin="702,0,0,36" Height="32" BorderBrush="#FF1AB2DE" Background="#FF0BC0F5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="146" Click="RemoveBtn_Click"/>
         <ListView
             x:Name="EmployeeListView" Margin="10,139,0,0" Height="364" VerticalAlignment="Top" HorizontalAlignment="Left" Width="371" ScrollViewer.CanContentScroll="True" FontSize="12" SelectionChanged="EmployeeListView_SelectionChanged">
             <ListView.View>

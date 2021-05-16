@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MidCourseProjectModel;
 using MidCourseProjectBusiness;
+using MidCourseProjectWPF.Popups;
 
 namespace MidCourseProjectWPF
 {
@@ -21,8 +22,9 @@ namespace MidCourseProjectWPF
     /// </summary>
     public partial class EmployeeDashboard : Window
     {
-        DatabaseManager manager = new DatabaseManager();
-        public static MainWindow mainWin = new MainWindow();
+        private DatabaseManager _manager = new DatabaseManager();
+        private static MainWindow _mainWin = new MainWindow();
+        private ViewEmployeeDetails _ViewDetails;
 
         Globals g = new Globals();
 
@@ -41,7 +43,7 @@ namespace MidCourseProjectWPF
             InitializeComponent();
             _employee = employee;
             greetingLbl.Content = $"{_employee.FirstName} {_employee.LastName}";
-            empList = manager.RetreiveEmployeeClocksData(_employee.EmployeeId);
+            empList = _manager.RetreiveEmployeeClocksData(_employee.EmployeeId);
             HoursListView.ItemsSource = empList;
             titlelabel_instructions.Content = "Here you can either Add new clocking times \nor update them.";
             //HoursListView.UpdateLayout();
@@ -55,7 +57,7 @@ namespace MidCourseProjectWPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            mainWin.Show();
+            _mainWin.Show();
             Hide();
         }
 
@@ -107,10 +109,10 @@ namespace MidCourseProjectWPF
 
             if (BasicCheck())
             {
-                if (manager.CreateCustomerClock(_employeeClocks, out string message))
+                if (_manager.CreateEmployeeClock(_employeeClocks, out string message))
                 {
                     g.MessageNotify(message, "Saved!");
-                    empList = manager.RetreiveEmployeeClocksData(_employee.EmployeeId);
+                    empList = _manager.RetreiveEmployeeClocksData(_employee.EmployeeId);
                     HoursListView.ItemsSource = empList;
                 }
                 else
@@ -127,10 +129,10 @@ namespace MidCourseProjectWPF
                 if (BasicCheck())
                 {
                     //Update data
-                    if (manager.UpdateEmployeeClocks(_selectedEmployeeClockID, _employeeClocks, out string message))
+                    if (_manager.UpdateEmployeeClocks(_selectedEmployeeClockID, _employeeClocks, out string message))
                     {
                         g.MessageNotify(message, "Updated!");
-                        empList = manager.RetreiveEmployeeClocksData(_employee.EmployeeId);
+                        empList = _manager.RetreiveEmployeeClocksData(_employee.EmployeeId);
                         HoursListView.ItemsSource = empList;
                     }
                     else
@@ -161,6 +163,13 @@ namespace MidCourseProjectWPF
                     ClockOutPicker.SelectedTime = _selectedClockOut;
                 }
             }
+        }
+
+        private void greetingLbl_Click(object sender, RoutedEventArgs e)
+        {
+            _ViewDetails = new ViewEmployeeDetails(_employee);
+            _ViewDetails.ShowDialog();
+            greetingLbl.Content = $"{_employee.FirstName} {_employee.LastName}";
         }
     }
 }
