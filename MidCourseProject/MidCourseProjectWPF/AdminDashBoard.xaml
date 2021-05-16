@@ -68,7 +68,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn
-                        DisplayMemberBinding="{Binding ClockDate, StringFormat=dd-MM-yyyy}"
+                        DisplayMemberBinding="{Binding ClockDate, StringFormat=dd/MM/yyyy}"
                         Header="DATE" />
                     <GridViewColumn
                         DisplayMemberBinding="{Binding ClockIn, StringFormat=HH:mm:ss.fff}"

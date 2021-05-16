@@ -25,6 +25,7 @@ namespace MidCourseProjectWPF
         DatabaseManager manager = new DatabaseManager();
         public static MainWindow mainWin = new MainWindow();
         private ViewAdminDetails _ViewDetails;
+        private RemoveWarning _removeWarning;
 
         Globals g = new Globals();
 
@@ -33,6 +34,7 @@ namespace MidCourseProjectWPF
 
         private List<Employee> _empList = new List<Employee>(); ///FOR LEFT LISTVIEW
         private List<EmployeeClock> _empClockList = new List<EmployeeClock>(); ///FOR RIGHT VIEW
+        private Employee _selectedEmployeeToRemove = new Employee();
 
         //Popup Windows
         private ViewDetails viewDetail;
@@ -86,7 +88,6 @@ namespace MidCourseProjectWPF
 
         private void EmployeeListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
             if (EmployeeListView.SelectedItem != null)
             {
                 ViewDetails_Btn.IsEnabled = true;
@@ -97,7 +98,6 @@ namespace MidCourseProjectWPF
                 _empClockList = manager.RetreiveEmployeeClocksData(id);
                 HoursListView.ItemsSource = _empClockList;
             }
-
         }
 
         private void ViewDetails_Btn_Click(object sender, RoutedEventArgs e)
@@ -121,6 +121,17 @@ namespace MidCourseProjectWPF
         {
             //Remove selected Employee but first needs to be IsWorking switched to false
             //then delete EmployeClocks related to Employee then delete Employee
+
+            if (EmployeeListView.SelectedValue != null)
+            {
+                Employee currentClockItem = EmployeeListView.SelectedItem as Employee;
+                _selectedEmployeeToRemove = currentClockItem;
+                //Open dialoguebox that allows to 
+                _removeWarning = new RemoveWarning(_selectedEmployeeToRemove);
+                _removeWarning.ShowDialog();
+                _empList = manager.EmployerRetreiveEmployeeData();
+                EmployeeListView.ItemsSource = _empList;
+            }
         }
     }
 }

@@ -42,24 +42,47 @@ namespace MidCourseProjectBusiness
             // takes in emp and validates
             // checks and stores data into HrDBContext() through the db using keyword
             // returns true which passes the appliction to the next page
+            bool duplicate = false;
             bool re = false;
             using (var db = new HrDBContext())
             {
-                try
+                message = "Finding Duplicates";
+                var selectedEmployeeClock = db.EmployeeClocks;
+                foreach (var item in selectedEmployeeClock)
                 {
-                    db.Add(empClock);
-                    db.SaveChanges();
-                    re = true;
-                    message = "Clocking times Added Successfully";
-                }
-                catch (Exception error)
-                {
-                    message = error.Message;
-                    re = false;
+                    if (item.ClockDate == empClock.ClockDate)
+                    {
+                        message = "Found Duplicates";
+                        duplicate = true;
+                        re = false;
+                    }
                 }
             }
-
-            return re;
+            //sep
+            using (var db = new HrDBContext())
+            {
+                if(duplicate != true)
+                {
+                    try
+                    {
+                        db.Add(empClock);
+                        db.SaveChanges();
+                        re = true;
+                        message = "Clocking times Added Successfully";
+                    }
+                    catch (Exception error)
+                    {
+                        message = error.Message;
+                        re = false;
+                    }
+                }
+                else
+                {
+                    message = "Found Duplicates, You already have a shift on this date. Please make sure your date is correct.";
+                    re = false;
+                }
+                return re;
+            }
         }
 
         public bool UpdateEmployee(string selectedID, Employee emp) //Only with no changes password
@@ -204,9 +227,31 @@ namespace MidCourseProjectBusiness
             return isUpdatable;
         }
 
-        public void RemoveEmployee() //Remove customer - only Admin available
+        public void RemoveEmployee(string selectedID, int isWorking, out int close) //Remove customer - only Admin available
         {
-            // 
+            //Remove Employee Clocks
+            //Remove Employee
+            if(isWorking == 0)
+            {
+                using (var db = new HrDBContext())
+                {
+                    var selectedEmployeeClocksToDelete = db.EmployeeClocks.Where(ec => ec.EmployeeId == selectedID);
+                    db.EmployeeClocks.RemoveRange(selectedEmployeeClocksToDelete);
+                    db.SaveChanges();
+                    close = 1; // true
+                }
+                using (var db = new HrDBContext())
+                {
+                    var selectedEmployeeToDelete = db.Employees.Where(ec => ec.EmployeeId == selectedID);
+                    db.Employees.RemoveRange(selectedEmployeeToDelete);
+                    db.SaveChanges();
+                    close = 1; // true
+                }
+            }
+            else
+            {
+                close = 0;
+            }
         }
 
         public bool UpdateEmployeeClocks(int selectedID, EmployeeClock employeeClock, out string message)
@@ -253,11 +298,6 @@ namespace MidCourseProjectBusiness
                 }
                 return list;
             }
-        }
-
-        public void RetrieveSelected(string employeeID)
-        {
-            // 
         }
 
         public List<Employee> EmployerRetreiveEmployeeData()

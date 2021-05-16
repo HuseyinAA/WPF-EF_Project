@@ -115,12 +115,12 @@ I noticed that I had underestimated this sprint as I managed to finish it ahead 
 **Sprint 2 Goals**
 
 - [x] Task 3
-- [ ] 1.1
-- [ ] 1.2
+- [x] 1.1
+- [x] 1.2
 - [x] 1.3
 - [x] 1.4
-- [ ] 1.5
-- [ ] 1.6
+- [x] 1.5
+- [x] 1.6
 
 
 
@@ -134,19 +134,50 @@ Tasks left to do...
 
 ***Start of the day Kanban Board***
 
-
+![13_05_2021_second SPRINT](/Images/Kanban/13_05_2021_second.PNG)
 
 ***End of the day Kanban Board*** 
+
+![14_05_2021_second](/Images/Kanban/14_05_2021_second.PNG)
 
 
 
 **Sprint 2 Goals**
 
-- [ ] 1.1
-- [ ] 1.2
-- [ ] 1.3
-- [ ] 1.4
-- [ ] 1.5
+- [x] 1.1
+- [x] 1.2
+- [x] 1.3
+- [x] 1.4
+- [x] 1.5
+- [x] 1.6
+
+
+
+#### Sprint Review
+
+
+
+#### Sprint 5:
+
+---------------------------------------
+
+***Start of the day Kanban Board***
+
+![14_05_2021_second](/Images/Kanban/14_05_2021_second.PNG)
+
+***End of the day Kanban Board*** 
+
+![15-16_05_2021_second](/Images/Kanban/15-16_05_2021_second.PNG)
+
+
+
+**Sprint 2 Goals**
+
+- [x] 1.1
+- [x] 1.2
+- [x] 1.3
+- [x] 1.4
+- [x] 1.5
 
 
 
