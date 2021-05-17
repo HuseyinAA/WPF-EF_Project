@@ -7,22 +7,13 @@ namespace MidCourseProjectTest
 {
     public class Tests
     {
-        DatabaseManager databaseManager;
+        DatabaseManager manager;
+        Employee employee = new Employee();
+
         [SetUp]
         public void Setup()
         {
-            databaseManager = new DatabaseManager();
-            // remove test entry in DB if present
-            using (var db = new HrDBContext())
-            {
-                var selectedEmployees =
-                from c in db.Employees
-                where c.EmployeeId == "trkmj"
-                select c;
-
-                db.Employees.RemoveRange(selectedEmployees);
-                db.SaveChanges();
-            }
+            manager = new DatabaseManager();
         }
 
         [Test]
@@ -32,11 +23,28 @@ namespace MidCourseProjectTest
         }
 
         [Test]
-        public void WhenANewEmployeeIsAdded_TheNumberOfCustomersIncreasesBy1()
+        public void WhenANewEmployeeIsAdded_TheNumberOfEmployeesIncreasesBy1()
         {
+            employee.EmployeeId = "ghaza";
+            employee.FirstName = "Hossain";
+            employee.LastName = "Ghazal";
+            employee.Address = "9 Baker Street";
+            employee.City = "London";
+            employee.PostCode = "W1 4DD";
+            employee.PostCode = "None";
+            employee.IsWorking = 1;
+            employee.HrRate = (decimal)8.95;
+            employee.PhoneNumber = "07439562751";
+            employee.Password = "hello1234";
+
             using (var db = new HrDBContext())
             {
+                var EmployeeCountBefore = db.Employees.Count();
+                var i = manager.CreateEmployee(employee, out string message);
+                var EmployeeCountAfter = db.Employees.Count();
 
+                Assert.AreEqual(EmployeeCountBefore + 1, EmployeeCountAfter);
+                Assert.AreEqual(message, "Save Successful");
             }
         }
 
