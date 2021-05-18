@@ -22,7 +22,7 @@ namespace MidCourseProjectBusiness
             { 
                 try
                 {
-                    db.Add(emp);
+                    db.Employees.Add(emp);
                     db.SaveChanges();
                     re = true;
                     message = "Save Successful";

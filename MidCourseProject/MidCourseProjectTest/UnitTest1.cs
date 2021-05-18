@@ -17,12 +17,6 @@ namespace MidCourseProjectTest
         }
 
         [Test]
-        public void Test1()
-        {
-            Assert.Pass();
-        }
-
-        [Test]
         public void WhenANewEmployeeIsAdded_TheNumberOfEmployeesIncreasesBy1()
         {
             employee.EmployeeId = "ghaza";
@@ -31,11 +25,12 @@ namespace MidCourseProjectTest
             employee.Address = "9 Baker Street";
             employee.City = "London";
             employee.PostCode = "W1 4DD";
-            employee.PostCode = "None";
+            employee.Position = "None";
             employee.IsWorking = 1;
             employee.HrRate = (decimal)8.95;
             employee.PhoneNumber = "07439562751";
             employee.Password = "hello1234";
+            employee.EmployerId = "Admin01";
 
             using (var db = new HrDBContext())
             {
@@ -48,24 +43,71 @@ namespace MidCourseProjectTest
             }
         }
 
+
+
         [Test]
-        public void WhenAEmployeeDetailsAreChanged_TheDatabaseIsUpdated()
+        public void AdminUpdatingEmployeeDetails_TheDatabaseIsUpdated()
         {
+            employee.EmployeeId = "ghaza";
+            employee.FirstName = "Hossain";
+            employee.LastName = "Ghazal";
+            employee.Address = "9 Baker Street";
+            employee.City = "London";
+            employee.PostCode = "W1 4DD";
+            employee.Position = "Trainee"; //Updated 'None; -> 'Trainee'
+            employee.IsWorking = 0; //Updated 1 - > 0
+            employee.HrRate = (decimal)8.95;
+            employee.PhoneNumber = "07439562751";
+            employee.Password = "hello1234";
+            employee.EmployerId = "Admin01";
+
+            Employee emp = new Employee();
+
             using (var db = new HrDBContext())
             {
-
+                manager.AdminUpdatingEmployee("ghaza", employee);
+                var EmployeeUpdatedResult = db.Employees.Where(e => e.EmployeeId == "ghaza").FirstOrDefault();
+                emp = EmployeeUpdatedResult;
             }
+            Assert.AreEqual("Trainee", emp.Position);
+            Assert.AreEqual(0, emp.IsWorking);
         }
 
         [Test]
 
-        public void WhenAEmployeeIsRemoved_TheyAreNoLongerInTheDatabase()
+        public void RemovingEmployeeByAdmin_TheyAreNoLongerInTheDatabase()
         {
+            employee.EmployeeId = "ghaza";
+            employee.FirstName = "Hossain";
+            employee.LastName = "Ghazal";
+            employee.Address = "9 Baker Street";
+            employee.City = "London";
+            employee.PostCode = "W1 4DD";
+            employee.Position = "None";
+            employee.IsWorking = 0; //False
+            employee.HrRate = (decimal)8.95;
+            employee.PhoneNumber = "07439562751";
+            employee.Password = "hello1234";
+            employee.EmployerId = "Admin01";
+
             using (var db = new HrDBContext())
             {
+                var EmployeeCountBefore = db.Employees.Count();
+                manager.RemoveEmployee(employee.EmployeeId, employee.IsWorking, out int close);
+                var EmployeeCountAfter = db.Employees.Count();
 
+                Assert.AreEqual(EmployeeCountBefore - 1, EmployeeCountAfter);
+                Assert.AreEqual(close, 1);
             }
         }
 
+        [TearDown]
+        public void TearDownEmployeeTest()
+        {
+            using (var db = new HrDBContext())
+            {
+                manager.RemoveEmployee("ghaza", 0, out int close);
+            }
+        }
     }
 }

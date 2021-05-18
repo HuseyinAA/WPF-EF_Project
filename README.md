@@ -37,21 +37,63 @@ Goals for expansion of some features are such:
 
 
 
-#### Project File Requirements:
+#### Project File Requirements & set up:
 
 --------------------------------
 
 If you want to download the repository you will need to download a few NuGet files on Visual studio for the different solutions.
 
-* MidCourseProjectModel - these Nugets below handle database connections, migrations, scaffolding etc
+* MidCourseProjectModel - these NuGet packages below handle database connections, migrations, scaffolding etc
   * Microsoft.EntityFrameworkCore (v5.0.5)
   * Microsoft.EntityFrameworkCore.SqlServer (v5.0.5)
   * Microsoft.EntityFrameworkCore.Tools (v5.0.5)
-* MidCourseProjectWPF - these NuGets allows for the use of googles Material Design
+* MidCourseProjectWPF - these NuGet packages allows for the use of googles Material Design in your WPF application
   * MaterialDesignColors (v2.0.0)
   * MaterialDesignThemes (v4.0.0) - for a quick start guide on how to install features ([Click Here](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Super-Quick-Start))
 
+`````sql
+DROP TABLE IF exists Employee
 
+CREATE TABLE Employee
+(
+	employeeID varchar(5) PRIMARY KEY,
+	firstName varchar(MAX) NOT NULL,
+	lastName varchar(MAX) NOT NULL,
+	address varchar(MAX) NOT NULL,
+	city varchar(MAX) NOT NULL,
+	postCode varchar(10) NOT NULL,
+	phoneNumber varchar(MAX) NOT NULL,
+	position varchar(MAX) NOT NULL,
+	isWorking integer NOT NULL,
+	hrRate decimal(10,5) NOT NULL,
+	password varchar(MAX) NOT NULL,
+	employerID varchar(7) FOREIGN KEY REFERENCES Employer(employerID)
+);
+
+CREATE TABLE EmployeeClocks
+(
+	employeeClockID int IDENTITY(1,1) PRIMARY KEY,
+	clockDate dateTime NOT NULL,
+	clockIn DateTime,
+	clockOut DateTime,
+	totalPay decimal(10,5),
+	employeeID varchar(5) FOREIGN KEY REFERENCES Employee(employeeID)
+);
+
+CREATE TABLE Employer
+(
+	employerID varchar(7) PRIMARY KEY, --Example 7 => Admin01
+	firstName varchar(MAX) NOT NULL,
+	lastName varchar(MAX) NOT NULL,
+	password varchar(MAX) NOT NULL,
+);
+`````
+
+After downloading the NuGet packages. Open Package manager and enter this: 
+
+```c#
+Scaffold-DbContext ['CONNECTION STRING FOUND IN DB'] Microsoft.EntityFrameworkCore.SqlServer -force
+```
 
 
 
