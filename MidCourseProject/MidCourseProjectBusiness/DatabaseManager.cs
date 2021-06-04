@@ -11,7 +11,7 @@ namespace MidCourseProjectBusiness
     public class DatabaseManager
     {
         ///CRUD FUNCTIONALITIES HERE!
-        
+
         public bool CreateEmployee(Employee emp, out string message)
         {
             // takes in emp and validates
@@ -19,7 +19,7 @@ namespace MidCourseProjectBusiness
             // returns true which passes the appliction to the next page
             bool re = false;
             using (var db = new HrDBContext())
-            { 
+            {
                 try
                 {
                     db.Employees.Add(emp);
@@ -61,7 +61,7 @@ namespace MidCourseProjectBusiness
             //sep
             using (var db = new HrDBContext())
             {
-                if(duplicate != true)
+                if (duplicate != true)
                 {
                     try
                     {
@@ -231,7 +231,7 @@ namespace MidCourseProjectBusiness
         {
             //Remove Employee Clocks
             //Remove Employee
-            if(isWorking == 0)
+            if (isWorking == 0)
             {
                 using (var db = new HrDBContext())
                 {
@@ -257,14 +257,14 @@ namespace MidCourseProjectBusiness
         public bool UpdateEmployeeClocks(int selectedID, EmployeeClock employeeClock, out string message)
         {
             bool isUpdatable = false;
-            if(employeeClock != null)
+            if (employeeClock != null)
             {
                 using (var db = new HrDBContext())
                 {
                     //Selecting employee
                     var selectedEmployeeClock = db.EmployeeClocks
                         .Where(em => em.EmployeeClockId == selectedID).FirstOrDefault();
-                        //.Where(emc => emc.ClockDate == employeeClock.ClockDate).FirstOrDefault();
+                    //.Where(emc => emc.ClockDate == employeeClock.ClockDate).FirstOrDefault();
                     //Change to these:
                     selectedEmployeeClock.ClockDate = employeeClock.ClockDate;
                     selectedEmployeeClock.ClockIn = employeeClock.ClockIn;
@@ -339,7 +339,7 @@ namespace MidCourseProjectBusiness
 
         public List<EmployeeClock> RetreiveEmployeeClocksData(string ID)
         {
-            using (var db  = new HrDBContext())
+            using (var db = new HrDBContext())
             {
                 //var selectedEmployeeClocks = db.EmployeeClocks.Where(e => e.EmployeeId == ID).Include(ec => ec.Employee).FirstOrDefault();
                 return db.EmployeeClocks.Where(e => e.EmployeeId == ID).Include(ec => ec.Employee).OrderByDescending(d => d.ClockDate).ToList();
@@ -355,17 +355,17 @@ namespace MidCourseProjectBusiness
             {
                 foreach (var i in db.EmployeeClocks)
                 {
-                    if(i.EmployeeId == ID)
+                    if (i.EmployeeId == ID)
                     {
                         list.Add(i);
                     }
-                    
+
                 }
                 return list;
             }
         }
         /////////////////////////////////////////////
-        
+
         public bool CheckLoginStatus(string ID, string password, out string message, out Employee employee, out Employer employer)
         {
             //Check to see if this.employeeID == employeeID && this.password == password
@@ -393,7 +393,7 @@ namespace MidCourseProjectBusiness
                         return logedin;
                     }
                 }
-                else if (selectedEmployer != null && selectedEmployee == null) 
+                else if (selectedEmployer != null && selectedEmployee == null)
                 {
                     if (selectedEmployer.Password == password)
                     {

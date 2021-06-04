@@ -68,37 +68,22 @@ namespace MidCourseProjectWPF
             var clockin = ClockInPicker.SelectedTime;
             var clockout = ClockOutPicker.SelectedTime;
 
-            if(date != null && clockin != null)
+            if (date != null && clockin != null)
             {
                 checks = true;
                 _employeeClocks.ClockDate = date.Value;
                 _employeeClocks.ClockIn = clockin.Value;
                 _employeeClocks.EmployeeId = _employee.EmployeeId;
                 //_employeeClocks.Employee = _employee;
-                CalculateTotalPay();
+                DateTime cin = ClockInPicker.SelectedTime.Value;
+                DateTime cout = ClockOutPicker.SelectedTime.Value;
+                PaymentCalculation.CalculateTotalPay(_employee, _employeeClocks, cin, cout);
                 if (clockout != null)
                 {
                     _employeeClocks.ClockOut = clockout.Value;
                 }
             }
             return checks;
-        }
-
-        public void CalculateTotalPay()
-        {
-            DateTime cin = ClockInPicker.SelectedTime.Value;
-            DateTime cout = ClockOutPicker.SelectedTime.Value;
-
-            var difference = cin - cout;
-            
-            var totalMins = Math.Abs(difference.Minutes);
-            var totalHours = Math.Abs(difference.Hours);
-
-            var totalhourlyPay = (totalHours * _employee.HrRate);
-            var totalMinDiv = totalMins / 60.0;
-            var totalMinPay = (Decimal)totalMinDiv * _employee.HrRate;
-            var totalPay = totalhourlyPay + totalMinPay;
-            _employeeClocks.TotalPay = totalPay;
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -124,7 +109,7 @@ namespace MidCourseProjectWPF
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(HoursListView.SelectedItem != null)
+            if (HoursListView.SelectedItem != null)
             {
                 if (BasicCheck())
                 {
@@ -149,7 +134,7 @@ namespace MidCourseProjectWPF
 
         private void HoursListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(HoursListView.SelectedItem != null)
+            if (HoursListView.SelectedItem != null)
             {
                 EmployeeClock currentItem = HoursListView.SelectedItem as EmployeeClock;
                 _selectedEmployeeClockID = currentItem.EmployeeClockId;
