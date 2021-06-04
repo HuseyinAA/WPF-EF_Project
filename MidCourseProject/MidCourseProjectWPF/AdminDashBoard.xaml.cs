@@ -22,7 +22,7 @@ namespace MidCourseProjectWPF
     /// </summary>
     public partial class AdminDashBoard : Window
     {
-        DatabaseManager manager = new DatabaseManager();
+        DatabaseManager manager = new DatabaseManager(new EmployeeService());
         public static MainWindow mainWin = new MainWindow();
         private ViewAdminDetails _ViewDetails;
         private RemoveWarning _removeWarning;

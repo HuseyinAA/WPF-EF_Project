@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,23 @@ namespace MidCourseProjectBusiness
 {
     public class DatabaseManager
     {
+
+        //I want a permanent connection to the service
+        private IEmployeeService _service;
+
+        //we didn't have a constructor, now we have 2!
+
+        //No argument construtor so our code doesn't break
+        public DatabaseManager()
+        {
+            _service = new EmployeeService();
+        }
+
+        public DatabaseManager(IEmployeeService service)
+        {
+            _service = service;
+        }
+
         ///CRUD FUNCTIONALITIES HERE!
 
         public bool CreateEmployee(Employee emp, out string message)
@@ -18,22 +36,17 @@ namespace MidCourseProjectBusiness
             // checks and stores data into HrDBContext() through the db using keyword
             // returns true which passes the appliction to the next page
             bool re = false;
-            using (var db = new HrDBContext())
+            try
             {
-                try
-                {
-                    db.Employees.Add(emp);
-                    db.SaveChanges();
-                    re = true;
-                    message = "Save Successful";
-                }
-                catch (Exception error)
-                {
-                    message = error.Message;
-                    re = false;
-                }
+                _service.CreateEmployee(emp);
+                re = true;
+                message = "Save Successful";
             }
-
+            catch (Exception error)
+            {
+                message = error.Message;
+                re = false;
+            }
             return re;
         }
 
@@ -233,19 +246,16 @@ namespace MidCourseProjectBusiness
             //Remove Employee
             if (isWorking == 0)
             {
-                using (var db = new HrDBContext())
+                try
                 {
-                    var selectedEmployeeClocksToDelete = db.EmployeeClocks.Where(ec => ec.EmployeeId == selectedID);
-                    db.EmployeeClocks.RemoveRange(selectedEmployeeClocksToDelete);
-                    db.SaveChanges();
+                    _service.RemoveAllEmployeeClocks(_service.GetEmployeeClocksByEmployeeId_List(selectedID));
+                    _service.RemoveEmployee(_service.GetEmployeeById(selectedID));
                     close = 1; // true
                 }
-                using (var db = new HrDBContext())
+                catch (DbUpdateConcurrencyException e) // an exception can be thrown if the database had been updated since last loaded
                 {
-                    var selectedEmployeeToDelete = db.Employees.Where(ec => ec.EmployeeId == selectedID);
-                    db.Employees.RemoveRange(selectedEmployeeToDelete);
-                    db.SaveChanges();
-                    close = 1; // true
+                    Debug.WriteLine($"Removing Employee Error: (Unable to find :: {selectedID}) - {e.Message}");
+                    close = 0;
                 }
             }
             else

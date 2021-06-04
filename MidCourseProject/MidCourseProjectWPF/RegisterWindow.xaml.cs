@@ -21,7 +21,7 @@ namespace MidCourseProjectWPF
     /// </summary>
     public partial class RegisterWindow : Window
     {
-        DatabaseManager manager = new DatabaseManager();
+        DatabaseManager manager = new DatabaseManager(new EmployeeService());
         private static MainWindow _mainWin = new MainWindow();
         private Employee _employee = new Employee();
 

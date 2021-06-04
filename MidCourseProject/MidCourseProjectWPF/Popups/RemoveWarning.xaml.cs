@@ -21,7 +21,7 @@ namespace MidCourseProjectWPF.Popups
     /// </summary>
     public partial class RemoveWarning : Window
     {
-        private DatabaseManager _manager = new DatabaseManager();
+        private DatabaseManager _manager = new DatabaseManager(new EmployeeService());
 
         private Employee _employee = new Employee();
         private EmployeeClock _employeeClock = new EmployeeClock();

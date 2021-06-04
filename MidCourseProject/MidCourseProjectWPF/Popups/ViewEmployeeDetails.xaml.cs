@@ -21,7 +21,7 @@ namespace MidCourseProjectWPF.Popups
     /// </summary>
     public partial class ViewEmployeeDetails : Window
     {
-        private DatabaseManager _manager = new DatabaseManager();
+        private DatabaseManager _manager = new DatabaseManager(new EmployeeService());
 
         Globals g = new Globals();
 

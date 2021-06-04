@@ -24,7 +24,7 @@ namespace MidCourseProjectWPF.Popups
     {
 
         private Employee _employee = new Employee();
-        DatabaseManager manager = new DatabaseManager();
+        DatabaseManager manager = new DatabaseManager(new EmployeeService());
 
         string positionTxtFileLocation = "C:/Users/Mrhos/Desktop/Sparta_Global/Projects/wpf-ef_Project/WPF-EF_Project/MidCourseProject/MidCourseProjectWPF/Resources/Positions.txt";
 

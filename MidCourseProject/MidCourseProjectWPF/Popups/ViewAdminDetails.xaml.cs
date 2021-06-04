@@ -22,7 +22,7 @@ namespace MidCourseProjectWPF.Popups
     public partial class ViewAdminDetails : Window
     {
 
-        private DatabaseManager _manager = new DatabaseManager();
+        private DatabaseManager _manager = new DatabaseManager(new EmployeeService());
 
         Globals g = new Globals();
 

@@ -22,7 +22,7 @@ namespace MidCourseProjectWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        DatabaseManager manager = new DatabaseManager();
+        DatabaseManager manager = new DatabaseManager(new EmployeeService());
 
         private EmployeeDashboard _EmpDashWin;
         private AdminDashBoard _AdmDashWin;
